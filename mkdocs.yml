@@ -1,0 +1,24 @@
+site_name: 情報通信工学実験実習 II (情報工学)
+# theme: readthedocs
+theme: material
+nav:
+  - Home: index.md
+  - 情報工学1: lab1.md
+  - 情報工学2: lab2.md
+  - 情報工学3: lab3.md
+  - 情報工学4: lab4.md
+  - 情報工学5: lab5.md
+  # - 付録: appendix.md
+
+plugins:
+  - search:
+      lang: 'ja'
+#  - with-pdf:
+#      output_path: "docs.pdf"
+
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
