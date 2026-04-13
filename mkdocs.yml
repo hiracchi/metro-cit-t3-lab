@@ -8,7 +8,8 @@ nav:
   - 情報工学3: lab3.md
   - 情報工学4: lab4.md
   - 情報工学5: lab5.md
-  # - 付録: appendix.md
+  - 付録: appendix.md
+  - 付録2: appendix2.md
 
 plugins:
   - search:

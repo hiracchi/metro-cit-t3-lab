@@ -1,41 +1,154 @@
----
+# レポート課題3（3日目）：Docker環境の構築
 
-## レポート課題3（3〜4日目）：DNS・Webサーバー構築とインフラ自動化
+## 【基礎知識】Dockerとコンテナ
+Dockerは、アプリケーションの実行環境をコンテナとして分離し、同じ構成を再現しやすくする仕組みである。後続の実験でWeb UIやAI関連サービスを動かすため、事前にDockerをセットアップしておく。
 
-### 【基礎知識】DNSの仕組みと自動化
-DNSとは、計算機にセットしたホスト名とインターネット上のアドレスであるIPアドレス間の変換を行う、インターネット上で必須のサーバー機能である。手動でのサーバー構築作業はミスを誘発しやすいため、シェルスクリプトを用いた自動化が現代のインフラ構築では重要視されている。
+## 1. 目的
+Dockerをセットアップし、まず単体コンテナの実行を体験したうえで、`docker compose` による複数設定の管理方法を習得する。
 
-### 1. 目的
-BIND9とApache2を構築し、AI（Gemini等）を活用したトラブルシューティングを体験する。また、シェルスクリプトを用い、手動で行った作業を自動化する。
+## 作業区分ラベル
+- `[Webブラウザ(Proxmox)]`: Proxmoxの画面操作
+- `[Windows 11 ターミナル]`: Windows 11 の PowerShell 操作
+- `[Ubuntuサーバー ターミナル]`: Ubuntu Server 上のコマンド操作
 
-### 2. 実験方法（使用機器と手順）
-1. インストールとゾーン設定
+## 2. 実験方法（使用機器と手順）
+まず `docker run` で単体コンテナを実行し、その後で `docker compose` による構成管理を体験する。
 
-```bash
-sudo apt install bind9 apache2
-```
+### 2.1 Docker単体の基本操作を確認する
 
-`jikken.internal` のゾーンファイルを作成し、自分のIPを `www` に割り当てる。
-
-2. AIデバッグ演習
-教員がわざと文法エラーを混ぜた `named.conf` を配布する。学生は `journalctl -u named` のログをGemini等のAIに貼り付け、「原因と修正案」を聞きながら修正する。
-
-3. インフラの自動化（AIペアプロ）
-「Apacheのインストール、特定HTMLの配置、サービスの再起動」を一括で行うシェルスクリプトを作成する。Geminiに対し「UbuntuでApacheの設定を自動化する冪等（べきとう）性のあるスクリプトを書いて」と依頼し、出力されたコードを自分の環境用に調整する。
-
-### 3. 結果と考察
-**確認コマンド:**
+1. [Ubuntuサーバー ターミナル] Dockerのインストール
 
 ```bash
-dig @localhost www.jikken.internal
-curl http://localhost
-systemctl is-active apache2
+sudo apt update
+sudo apt install -y docker.io docker-compose-v2
 ```
 
-📷 **【エビデンス取得】** DNS確認（`dig`）、Web確認（`curl`）、およびスクリプト実行後の状態確認（`systemctl is-active apache2`）の各コマンド実行結果をキャプチャし、図表のルールに従ってレポートにまとめること。
+1. [Ubuntuサーバー ターミナル] Dockerサービスの有効化
 
-### 4. 課題
-1. DNSの「正引き」と「逆引き」の違いは何か？
-2. URL「`http://www.metro-cit.ac.jp`」にアクセスする際、DNSはどのような順序でIPアドレスを問い合わせるか。ドメインの階層構造（.jp、.ac、.metro-cit等）を含めて説明せよ。
-3. スクリプト処理における「冪等性（べきとうせい）」とは何か、なぜサーバー構築の自動化において重要なのか考察せよ。
+```bash
+sudo systemctl enable --now docker
+sudo systemctl status docker
+docker --version
+```
+
+1. [Ubuntuサーバー ターミナル] 単体コンテナの動作確認
+
+```bash
+sudo docker run --rm hello-world
+```
+
+1. [Ubuntuサーバー ターミナル] 起動中コンテナと取得済みイメージを確認する
+
+```bash
+sudo docker ps -a
+sudo docker images
+```
+
+### 2.2 Docker Composeで構成管理を体験する
+
+1. [Ubuntuサーバー ターミナル] Composeプラグインが利用できることを確認する
+
+```bash
+sudo docker compose version
+```
+
+1. [Ubuntuサーバー ターミナル] `docker compose` の動作確認用ディレクトリを作成する
+
+```bash
+sudo mkdir -p /opt/compose-demo
+cd /opt/compose-demo
+```
+
+1. [Ubuntuサーバー ターミナル] `compose.yaml` を作成する
+
+```bash
+sudo nano /opt/compose-demo/compose.yaml
+```
+
+以下の内容を保存する。
+
+```yaml
+services:
+  web:
+    image: traefik/whoami
+    container_name: compose-whoami
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+```
+
+1. [Ubuntuサーバー ターミナル] Compose定義を検証して起動する
+
+```bash
+cd /opt/compose-demo
+sudo docker compose config
+sudo docker compose up -d
+sudo docker compose ps
+```
+
+1. [Ubuntuサーバー ターミナル] 起動したコンテナを検証する
+
+```bash
+curl http://localhost:8080
+sudo docker compose logs --tail 20
+```
+
+`curl http://localhost:8080` の出力には、コンテナ名やIPアドレスなどの情報が表示される。応答本文が返ることを確認する。
+
+1. [Windows 11 ターミナル] クライアントから到達確認を行う
+
+```powershell
+Test-NetConnection 192.168.1.10 -Port 8080
+```
+
+1. [Windows 11 ターミナル] Webブラウザで `http://192.168.1.10:8080` にアクセスし、whoamiコンテナの応答画面が表示されることを確認する
+
+1. [Ubuntuサーバー ターミナル] Composeで起動したコンテナを停止・削除する
+
+```bash
+cd /opt/compose-demo
+sudo docker compose down
+sudo docker compose ps
+```
+
+## 3. 結果と考察
+**[Ubuntuサーバー ターミナル] 確認コマンド:**
+
+```bash
+docker --version
+sudo systemctl status docker
+sudo docker run --rm hello-world
+sudo docker ps -a
+sudo docker images
+sudo docker compose version
+cd /opt/compose-demo
+sudo docker compose config
+sudo docker compose up -d
+sudo docker compose ps
+curl http://localhost:8080
+sudo docker compose logs --tail 20
+sudo docker compose down
+```
+
+**[Windows 11 ターミナル] 確認コマンド:**
+
+```powershell
+Test-NetConnection 192.168.1.10 -Port 8080
+```
+
+📷 **【エビデンス取得】** 以下の6点をキャプチャし、図表のルールにしたがってレポートにまとめること。
+
+1. `docker --version` と `sudo systemctl status docker` を実行し、Docker本体の導入とサービス起動が確認できる画面
+2. `sudo docker run --rm hello-world` を実行し、単体コンテナが正常に起動・終了する画面
+3. `sudo docker ps -a` または `sudo docker images` を実行し、Dockerがコンテナやイメージを管理していることがわかる画面
+4. `sudo docker compose version` を実行し、Composeプラグインが利用可能であることがわかる画面
+5. `sudo docker compose config` と `sudo docker compose ps` を実行し、Compose定義が正しく解釈されて whoami コンテナが起動していることがわかる画面
+6. `curl http://localhost:8080`、`Test-NetConnection 192.168.1.10 -Port 8080`、またはブラウザ表示を確認し、Composeで起動した whoami コンテナへサーバー側とクライアント側の両方からアクセスできることがわかる画面
+
+## 4. 課題
+1. コンテナ型仮想化とハイパーバイザ型仮想化の違いを説明せよ。
+2. Dockerサービスを自動起動設定にする意義を説明せよ。
+3. コンテナを利用することで、アプリケーション配布や環境再現にどのような利点があるか考察せよ。
+4. `docker run` と `docker compose up` の使い分けを説明せよ。
+5. `compose.yaml` でポート公開や再起動ポリシーを定義しておく利点を説明せよ。
 
