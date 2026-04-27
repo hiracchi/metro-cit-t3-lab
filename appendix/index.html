@@ -1,0 +1,1243 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../lab5/">
+      
+      
+        <link rel="next" href="../appendix2/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>付録 - 情報通信工学実験実習 II (情報工学)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#linux" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="情報通信工学実験実習 II (情報工学)" class="md-header__button md-logo" aria-label="情報通信工学実験実習 II (情報工学)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            情報通信工学実験実習 II (情報工学)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              付録
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="情報通信工学実験実習 II (情報工学)" class="md-nav__button md-logo" aria-label="情報通信工学実験実習 II (情報工学)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    情報通信工学実験実習 II (情報工学)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    情報工学1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    情報工学2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    情報工学3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    情報工学4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    情報工学5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    付録
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    付録
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-linuxbash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Linux（bash）基本コマンド
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Linux（bash）基本コマンド">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1-1. まず覚える移動・確認コマンド
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1-2. ファイル操作コマンド
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1-3. 検索・フィルタ・ログ確認
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1-4. パイプとリダイレクト
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. ファイル・ディレクトリの表し方（パス）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. ファイル・ディレクトリの表し方（パス）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2-1. 絶対パスと相対パス
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2-2. よく使う記号
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-3-windows-macos-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2-3. Windows / macOS / Linux のパス差分
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2-4. ファイル・ディレクトリの属性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2-5. 属性に関する基本操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-nano" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. nano の基本操作
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-vim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. vim の基本操作
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. vim の基本操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4-1. 主要モード
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4-2. 最低限の操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-windows-11-macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Windows 11 / macOS との差異（実習で重要な点）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Windows 11 / macOS との差異（実習で重要な点）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#5-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5-1. シェルとコマンド
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5-2. 権限昇格
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5-3. 改行コード
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-4-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5-4. SSH鍵の保存場所
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5-5. 属性・権限の扱いの差分
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 実習向けの運用上の注意
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appendix2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    付録2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-linuxbash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Linux（bash）基本コマンド
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Linux（bash）基本コマンド">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1-1. まず覚える移動・確認コマンド
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1-2. ファイル操作コマンド
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1-3. 検索・フィルタ・ログ確認
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1-4. パイプとリダイレクト
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. ファイル・ディレクトリの表し方（パス）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. ファイル・ディレクトリの表し方（パス）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2-1. 絶対パスと相対パス
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2-2. よく使う記号
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-3-windows-macos-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2-3. Windows / macOS / Linux のパス差分
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2-4. ファイル・ディレクトリの属性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2-5. 属性に関する基本操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-nano" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. nano の基本操作
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-vim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. vim の基本操作
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. vim の基本操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4-1. 主要モード
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4-2. 最低限の操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-windows-11-macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Windows 11 / macOS との差異（実習で重要な点）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Windows 11 / macOS との差異（実習で重要な点）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#5-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5-1. シェルとコマンド
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5-2. 権限昇格
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5-3. 改行コード
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-4-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5-4. SSH鍵の保存場所
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5-5. 属性・権限の扱いの差分
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 実習向けの運用上の注意
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="linux">付録：Linuxコマンド・パス表記・エディタ操作の基礎</h1>
+<p>この付録では、実験で頻繁に使う Linux（bash系シェル）の基本操作をまとめる。あわせて、Windows 11 や macOS との違いも示す。</p>
+<h2 id="1-linuxbash">1. Linux（bash）基本コマンド</h2>
+<h3 id="1-1">1-1. まず覚える移動・確認コマンド</h3>
+<div class="highlight"><pre><span></span><code><span class="nb">pwd</span><span class="w">                 </span><span class="c1"># 現在の作業ディレクトリを表示</span>
+ls<span class="w">                  </span><span class="c1"># ファイル・ディレクトリ一覧を表示</span>
+ls<span class="w"> </span>-la<span class="w">              </span><span class="c1"># 詳細表示（隠しファイル含む）</span>
+<span class="nb">cd</span><span class="w"> </span>/path/to/dir<span class="w">     </span><span class="c1"># ディレクトリ移動</span>
+<span class="nb">cd</span><span class="w"> </span>~<span class="w">                </span><span class="c1"># ホームディレクトリへ移動</span>
+<span class="nb">cd</span><span class="w"> </span>..<span class="w">               </span><span class="c1"># 1つ上の階層へ移動</span>
+</code></pre></div>
+<h3 id="1-2">1-2. ファイル操作コマンド</h3>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>testdir<span class="w">               </span><span class="c1"># ディレクトリ作成</span>
+touch<span class="w"> </span>sample.txt<span class="w">            </span><span class="c1"># 空ファイル作成</span>
+cp<span class="w"> </span>a.txt<span class="w"> </span>b.txt<span class="w">              </span><span class="c1"># ファイルコピー</span>
+cp<span class="w"> </span>-r<span class="w"> </span>dir1<span class="w"> </span>dir2<span class="w">             </span><span class="c1"># ディレクトリコピー</span>
+mv<span class="w"> </span>old.txt<span class="w"> </span>new.txt<span class="w">          </span><span class="c1"># 名前変更/移動</span>
+rm<span class="w"> </span>file.txt<span class="w">                 </span><span class="c1"># ファイル削除</span>
+rm<span class="w"> </span>-r<span class="w"> </span>dir<span class="w">                   </span><span class="c1"># ディレクトリ削除</span>
+cat<span class="w"> </span>file.txt<span class="w">                </span><span class="c1"># ファイル内容表示</span>
+less<span class="w"> </span>file.txt<span class="w">               </span><span class="c1"># ページ送り表示（qで終了）</span>
+</code></pre></div>
+<h3 id="1-3">1-3. 検索・フィルタ・ログ確認</h3>
+<div class="highlight"><pre><span></span><code>grep<span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="w"> </span>app.log<span class="w">               </span><span class="c1"># 文字列検索</span>
+grep<span class="w"> </span>-R<span class="w"> </span><span class="s2">&quot;Bind9&quot;</span><span class="w"> </span>/etc<span class="w">               </span><span class="c1"># 再帰検索</span>
+find<span class="w"> </span>/etc<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.conf&quot;</span><span class="w">           </span><span class="c1"># ファイル検索</span>
+tail<span class="w"> </span>-n<span class="w"> </span><span class="m">50</span><span class="w"> </span>/var/log/syslog<span class="w">          </span><span class="c1"># 末尾50行表示</span>
+journalctl<span class="w"> </span>-u<span class="w"> </span>ssh<span class="w"> </span>-n<span class="w"> </span><span class="m">30</span><span class="w">             </span><span class="c1"># サービスログ表示</span>
+</code></pre></div>
+<h3 id="1-4">1-4. パイプとリダイレクト</h3>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>access.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">192</span>.168.100.xxx<span class="w">  </span><span class="c1"># パイプ（|）で結果を渡す</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>out.txt<span class="w">             </span><span class="c1"># 上書き出力</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;world&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>out.txt<span class="w">            </span><span class="c1"># 追記出力</span>
+<span class="nb">command</span><span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>err.log<span class="w">                  </span><span class="c1"># エラー出力のみ保存</span>
+</code></pre></div>
+<h2 id="2">2. ファイル・ディレクトリの表し方（パス）</h2>
+<h3 id="2-1">2-1. 絶対パスと相対パス</h3>
+<ul>
+<li>絶対パス: ルート <code>/</code> から始まるパス
+例: <code>/etc/ssh/sshd_config</code></li>
+<li>相対パス: 現在位置を基準とするパス
+例: <code>./docs/lab1.md</code>, <code>../lab2.md</code></li>
+</ul>
+<h3 id="2-2">2-2. よく使う記号</h3>
+<ul>
+<li><code>.</code>: 現在のディレクトリ</li>
+<li><code>..</code>: 1つ上のディレクトリ</li>
+<li><code>~</code>: 現在ユーザーのホームディレクトリ</li>
+<li><code>/</code>: 区切り文字（Linux/macOS）</li>
+</ul>
+<h3 id="2-3-windows-macos-linux">2-3. Windows / macOS / Linux のパス差分</h3>
+<ul>
+<li>Linux: <code>/home/student/.ssh/id_ed25519</code></li>
+<li>macOS: <code>/Users/user/.ssh/id_ed25519</code></li>
+<li>Windows: <code>C:\Users\user\.ssh\id_ed25519</code>（PowerShellでは <code>/</code> も扱える場合がある）</li>
+</ul>
+<h3 id="2-4">2-4. ファイル・ディレクトリの属性</h3>
+<p>Linuxでは、ファイルやディレクトリに次の属性がある。</p>
+<ul>
+<li>種別: 通常ファイル、ディレクトリ、シンボリックリンクなど</li>
+<li>権限: 読み取り（r）、書き込み（w）、実行（x）</li>
+<li>所有者: owner（ユーザー）</li>
+<li>所有グループ: group</li>
+<li>更新時刻: 最終更新日時</li>
+</ul>
+<p>確認コマンド例:</p>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-l<span class="w">           </span><span class="c1"># 種別、権限、所有者、サイズ、時刻を表示</span>
+stat<span class="w"> </span>file.txt<span class="w">   </span><span class="c1"># 属性を詳細表示</span>
+</code></pre></div>
+<p><code>ls -l</code> の先頭例 <code>-rw-r--r--</code> の見方:</p>
+<ul>
+<li>1文字目: 種別（<code>-</code> は通常ファイル、<code>d</code> はディレクトリ）</li>
+<li>2〜4文字目: 所有者権限</li>
+<li>5〜7文字目: グループ権限</li>
+<li>8〜10文字目: その他ユーザー権限</li>
+</ul>
+<h3 id="2-5">2-5. 属性に関する基本操作</h3>
+<div class="highlight"><pre><span></span><code>chmod<span class="w"> </span><span class="m">644</span><span class="w"> </span>file.txt<span class="w">                 </span><span class="c1"># 権限変更（rw-r--r--）</span>
+chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>script.sh<span class="w">                </span><span class="c1"># 実行権限付与（rwxr-xr-x）</span>
+chown<span class="w"> </span>student<span class="w"> </span>file.txt<span class="w">             </span><span class="c1"># 所有者変更</span>
+chown<span class="w"> </span>student:student<span class="w"> </span>file.txt<span class="w">     </span><span class="c1"># 所有者とグループ変更</span>
+chgrp<span class="w"> </span>www-data<span class="w"> </span>file.txt<span class="w">            </span><span class="c1"># グループ変更</span>
+ln<span class="w"> </span>-s<span class="w"> </span>/path/src<span class="w"> </span>/path/link<span class="w">         </span><span class="c1"># シンボリックリンク作成</span>
+</code></pre></div>
+<p>再帰的に変更する場合は <code>-R</code> を使う（例: <code>chmod -R 755 dir</code>）。ただし、対象を誤ると広範囲に影響するため注意する。</p>
+<h2 id="3-nano">3. nano の基本操作</h2>
+<p><code>nano</code> は初心者向けのシンプルなターミナルエディタ。</p>
+<div class="highlight"><pre><span></span><code>nano<span class="w"> </span>/etc/hosts
+</code></pre></div>
+<ul>
+<li>文字入力: そのまま入力</li>
+<li>保存: <code>Ctrl + O</code> → Enter</li>
+<li>終了: <code>Ctrl + X</code></li>
+<li>検索: <code>Ctrl + W</code></li>
+<li>切り取り（行）: <code>Ctrl + K</code></li>
+<li>貼り付け: <code>Ctrl + U</code></li>
+</ul>
+<h2 id="4-vim">4. vim の基本操作</h2>
+<p><code>vim</code> は高機能エディタ。モードの違いを理解することが重要。</p>
+<div class="highlight"><pre><span></span><code>vim<span class="w"> </span>/etc/netplan/00-installer-config.yaml
+</code></pre></div>
+<h3 id="4-1">4-1. 主要モード</h3>
+<ul>
+<li>ノーマルモード: 起動直後のモード（移動・削除・保存命令）</li>
+<li>挿入モード: 文字入力するモード</li>
+</ul>
+<h3 id="4-2">4-2. 最低限の操作</h3>
+<ul>
+<li>挿入モードへ: <code>i</code></li>
+<li>ノーマルモードへ戻る: <code>Esc</code></li>
+<li>保存して終了: <code>:wq</code> → Enter</li>
+<li>保存せず終了: <code>:q!</code> → Enter</li>
+<li>検索: <code>/文字列</code> → Enter</li>
+<li>1行削除: <code>dd</code></li>
+</ul>
+<h2 id="5-windows-11-macos">5. Windows 11 / macOS との差異（実習で重要な点）</h2>
+<h3 id="5-1">5-1. シェルとコマンド</h3>
+<ul>
+<li>Linux: bash（または sh 互換シェル）</li>
+<li>macOS: zsh が標準（bash系文法は多くが共通）</li>
+<li>Windows: PowerShell が主流（コマンド名やオプション体系が異なる）</li>
+</ul>
+<p>例:</p>
+<ul>
+<li>Linux/macOS: <code>ls</code>, <code>cp</code>, <code>mv</code>, <code>cat</code></li>
+<li>PowerShell: <code>Get-ChildItem</code>, <code>Copy-Item</code>, <code>Move-Item</code>, <code>Get-Content</code></li>
+</ul>
+<h3 id="5-2">5-2. 権限昇格</h3>
+<ul>
+<li>Linux/macOS: <code>sudo</code> を利用</li>
+<li>Windows: 管理者権限の PowerShell / コマンドプロンプトを起動</li>
+</ul>
+<h3 id="5-3">5-3. 改行コード</h3>
+<ul>
+<li>Linux/macOS: LF</li>
+<li>Windows: CRLF</li>
+</ul>
+<p>シェルスクリプトをWindowsで編集した場合、改行コードの違いで実行エラーになることがある。</p>
+<h3 id="5-4-ssh">5-4. SSH鍵の保存場所</h3>
+<ul>
+<li>Linux/macOS: <code>~/.ssh/</code></li>
+<li>Windows: <code>$env:USERPROFILE\.ssh\</code></li>
+</ul>
+<h3 id="5-5">5-5. 属性・権限の扱いの差分</h3>
+<ul>
+<li>Linux: <code>chmod</code>、<code>chown</code> で権限/所有者を直接管理する。</li>
+<li>macOS: Linuxに近いが、拡張属性（<code>xattr</code>）やACLが使われる場合がある。</li>
+<li>Windows: NTFSのACLによる権限管理が中心で、Linuxの <code>rwx</code> とは表現が異なる。</li>
+</ul>
+<p>実習でLinuxサーバー設定ファイルを扱うときは、Linux側で <code>ls -l</code> と <code>stat</code> を確認してから編集するのが安全である。</p>
+<h2 id="6">6. 実習向けの運用上の注意</h2>
+<ul>
+<li>破壊的コマンド（<code>rm -rf</code> など）は対象パスを <code>pwd</code> と <code>ls</code> で確認してから実行する。</li>
+<li>設定変更前はバックアップを作成する。</li>
+<li><code>sudo</code> 実行時は、コマンドと対象ファイルを再確認する。</li>
+<li>エラー時は、まず <code>systemctl status</code> と <code>journalctl</code> でログを確認する。</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

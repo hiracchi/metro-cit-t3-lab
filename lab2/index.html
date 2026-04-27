@@ -1,0 +1,806 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../lab1/">
+      
+      
+        <link rel="next" href="../lab3/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>情報工学2 - 情報通信工学実験実習 II (情報工学)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#22ssh" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="情報通信工学実験実習 II (情報工学)" class="md-header__button md-logo" aria-label="情報通信工学実験実習 II (情報工学)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            情報通信工学実験実習 II (情報工学)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              情報工学2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="情報通信工学実験実習 II (情報工学)" class="md-nav__button md-logo" aria-label="情報通信工学実験実習 II (情報工学)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    情報通信工学実験実習 II (情報工学)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    情報工学1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    情報工学2
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    情報工学2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【基礎知識】ファイアウォールの役割
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【基礎知識】SSHと鍵認証
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 目的
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        作業区分ラベル
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 実験方法（使用機器と手順）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 結果と考察
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 課題
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    情報工学3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    情報工学4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    情報工学5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appendix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    付録
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appendix2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    付録2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【基礎知識】ファイアウォールの役割
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        【基礎知識】SSHと鍵認証
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 目的
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        作業区分ラベル
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 実験方法（使用機器と手順）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 結果と考察
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 課題
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="22ssh">レポート課題2（2日目）：ファイアウォール設定・SSH鍵認証の確認</h1>
+<p>本実験は1回分（4時限分 × 1）を想定している。</p>
+<p>実験レポートのファイル名は T3情報工学2_[学生番号]_[氏名].pdf とすること。</p>
+<h2 id="_1">【基礎知識】ファイアウォールの役割</h2>
+<p>ファイアウォールは、サーバーへの通信のうち、必要なものだけを許可し、不要な通信を遮断するための仕組みである。Linuxでは <code>ufw</code> を用いて設定することが多く、SSH接続やWeb公開に必要なポートだけを開放することで、外部からの不正なアクセスや意図しない通信のリスクを低減できる。</p>
+<h2 id="ssh">【基礎知識】SSHと鍵認証</h2>
+<p>SSHはサーバーへ遠隔接続して管理するための仕組みであり、パスワード認証よりも公開鍵認証のほうが安全である。公開鍵をサーバーに登録し、<code>sshd_config</code> でパスワード認証を無効化することで、総当たり攻撃などのリスクを低減できる。</p>
+<h2 id="1">1. 目的</h2>
+<p>ファイアウォールの基本設定とSSHの鍵認証設定を行い、安全にサーバーへ接続できるリモート管理環境を構築する。</p>
+<h2 id="_2">作業区分ラベル</h2>
+<ul>
+<li><code>[Webブラウザ(Proxmox)]</code>: Proxmoxの画面操作</li>
+<li><code>[Windows 11 ターミナル]</code>: Windows 11 の PowerShell 操作</li>
+<li><code>[Ubuntuサーバー ターミナル]</code>: Ubuntu Server 上のコマンド操作</li>
+</ul>
+<h2 id="2">2. 実験方法（使用機器と手順）</h2>
+<ol>
+<li>
+<p>[Ubuntuサーバー ターミナル] ファイアウォールの設定</p>
+<p><code>ufw</code> を用いて必要なポートのみを開放する。SSH（22/tcp）と後続の実験で利用するHTTP（80/tcp）を許可し、それ以外の不要な通信を遮断する。</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">22</span>/tcp
+sudo<span class="w"> </span>ufw<span class="w"> </span><span class="nb">enable</span>
+</code></pre></div>
+</li>
+<li>
+<p>[Ubuntuサーバー ターミナル] ファイアウォール設定の確認</p>
+<p>設定後、許可したポートのみが開放されていることを確認する。</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>ufw<span class="w"> </span>status<span class="w"> </span>numbered
+sudo<span class="w"> </span>ss<span class="w"> </span>-tuln
+</code></pre></div>
+</li>
+<li>
+<p>[Windows 11 ターミナル] クライアントからの通信確認</p>
+<p>Windows 11 のクライアント端末からサーバーに対して、許可したポートには接続でき、許可していないポートには接続できないことを確認する。PowerShell を用いて、外部から見た通信可否を確認する。<code>192.168.100.xxx</code> は自分のサーバーのIPアドレスとする。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Test-NetConnection</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">100</span><span class="p">.</span><span class="n">xxx</span> <span class="n">-Port</span> <span class="n">22</span>
+</code></pre></div>
+<p>この結果から、22/tcp には接続できること、未許可の 80/tcp と 443/tcp には接続できないことを確認する。</p>
+</li>
+<li>
+<p>[Windows 11 ターミナル] Windows 11でのSSH鍵作成</p>
+<p>Windows 11 のPowerShellでSSH鍵ペアを作成する。あらかじめ <code>.ssh</code> ディレクトリを作成し、鍵の保存場所とファイル名を指定して作成後に公開鍵ファイルが生成されていることを確認する。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">New-Item</span> <span class="n">-ItemType</span> <span class="n">Directory</span> <span class="n">-Force</span> <span class="n">-Path</span> <span class="nv">$env:USERPROFILE</span><span class="p">\.</span><span class="n">ssh</span>
+<span class="n">ssh-keygen</span> <span class="n">-t</span> <span class="n">ed25519</span> <span class="n">-C</span> <span class="s2">&quot;t3-lab&quot;</span> <span class="o">-f</span> <span class="nv">$env:USERPROFILE</span><span class="p">\.</span><span class="n">ssh</span><span class="p">\</span><span class="n">id_ed25519_t3</span>
+<span class="nb">Get-ChildItem</span> <span class="nv">$env:USERPROFILE</span><span class="p">\.</span><span class="n">ssh</span><span class="p">\</span><span class="n">id_ed25519_t3</span><span class="p">*</span>
+</code></pre></div>
+<p>必要に応じて <code>id_ed25519_t3.pub</code> の内容を確認し、次の手順でサーバーへ登録する。</p>
+</li>
+<li>
+<p>[Ubuntuサーバー ターミナル] SSH鍵認証の設定</p>
+<p>作成した公開鍵（<code>id_ed25519_t3.pub</code>）をサーバーへ登録する。その後、サーバー側の <code>/etc/ssh/sshd_config</code> を編集し、鍵認証を有効化したうえでパスワード認証を無効化する。</p>
+<p>例（サーバー側設定）:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>sshd<span class="w"> </span>-t
+sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>ssh
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>ssh
+</code></pre></div>
+<p>設定後、<code>[Windows 11 ターミナル]</code> から以下のコマンドを実行してSSH接続し、パスワードなしでログインできることを確認する。</p>
+<div class="highlight"><pre><span></span><code><span class="n">ssh</span> <span class="n">-i</span> <span class="nv">$env:USERPROFILE</span><span class="p">\.</span><span class="n">ssh</span><span class="p">\</span><span class="n">id_ed25519_t3</span> <span class="n">student</span><span class="nv">@192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">100</span><span class="p">.</span><span class="n">xxx</span>
+</code></pre></div>
+</li>
+<li>
+<p>[Windows 11 ターミナル] SSHファイル転送（scp）演習</p>
+<p>Windows 11 クライアントからサーバーへファイルを送信し、サーバーからクライアントへファイルを受信する。送受信の両方を実施し、リモート運用時の基本操作を確認する。</p>
+<div class="highlight"><pre><span></span><code><span class="n">scp</span> <span class="p">.\</span><span class="n">sample</span><span class="p">.</span><span class="n">txt</span> <span class="n">student</span><span class="nv">@192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">100</span><span class="p">.</span><span class="n">xxx</span><span class="p">:~/</span><span class="n">sample_from_win</span><span class="p">.</span><span class="n">txt</span>
+<span class="n">scp</span> <span class="n">student</span><span class="nv">@192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">100</span><span class="p">.</span><span class="n">xxx</span><span class="p">:~/</span><span class="n">sample_from_win</span><span class="p">.</span><span class="n">txt</span> <span class="p">.\</span><span class="n">sample_from_server</span><span class="p">.</span><span class="n">txt</span>
+</code></pre></div>
+<p>転送後、Windows側とサーバー側でファイルの存在を確認する。</p>
+</li>
+</ol>
+<h2 id="3">3. 結果と考察</h2>
+<p>ファイアウォール設定とSSH鍵認証設定後、以下のコマンドを実行し、安全な通信制御とリモート接続が正しく行えることを確認する。</p>
+<p><strong>[Ubuntuサーバー ターミナル]</strong></p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>ufw<span class="w"> </span>status<span class="w"> </span>numbered
+sudo<span class="w"> </span>sshd<span class="w"> </span>-t
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>ssh
+ls<span class="w"> </span>-l<span class="w"> </span>~/sample_from_win.txt
+</code></pre></div>
+<p><strong>[Windows 11 ターミナル]</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nb">New-Item</span> <span class="n">-ItemType</span> <span class="n">Directory</span> <span class="n">-Force</span> <span class="n">-Path</span> <span class="nv">$env:USERPROFILE</span><span class="p">\.</span><span class="n">ssh</span>
+<span class="n">ssh-keygen</span> <span class="n">-t</span> <span class="n">ed25519</span> <span class="n">-C</span> <span class="s2">&quot;t3-lab&quot;</span> <span class="o">-f</span> <span class="nv">$env:USERPROFILE</span><span class="p">\.</span><span class="n">ssh</span><span class="p">\</span><span class="n">id_ed25519_t3</span>
+<span class="nb">Test-NetConnection</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">100</span><span class="p">.</span><span class="n">xxx</span> <span class="n">-Port</span> <span class="n">22</span>
+<span class="n">ssh</span> <span class="n">-i</span> <span class="nv">$env:USERPROFILE</span><span class="p">\.</span><span class="n">ssh</span><span class="p">\</span><span class="n">id_ed25519_t3</span> <span class="n">student</span><span class="nv">@192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">100</span><span class="p">.</span><span class="n">xxx</span>
+<span class="n">scp</span> <span class="p">.\</span><span class="n">sample</span><span class="p">.</span><span class="n">txt</span> <span class="n">student</span><span class="nv">@192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">100</span><span class="p">.</span><span class="n">xxx</span><span class="p">:~/</span><span class="n">sample_from_win</span><span class="p">.</span><span class="n">txt</span>
+<span class="n">scp</span> <span class="n">student</span><span class="nv">@192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">100</span><span class="p">.</span><span class="n">xxx</span><span class="p">:~/</span><span class="n">sample_from_win</span><span class="p">.</span><span class="n">txt</span> <span class="p">.\</span><span class="n">sample_from_server</span><span class="p">.</span><span class="n">txt</span>
+</code></pre></div>
+<p>📷 <strong>【エビデンス取得】</strong> 以下の6点をスクリーンショットで取得し、図としてレポートに挿入・説明すること。</p>
+<ol>
+<li><code>sudo ufw status numbered</code> を実行し、必要なポートのみが許可されていることが確認できる画面</li>
+<li>Windows 11 クライアントで <code>ssh-keygen -t ed25519 -C "t3-lab" -f $env:USERPROFILE\.ssh\id_ed25519_t3</code> と <code>Get-ChildItem $env:USERPROFILE\.ssh\id_ed25519_t3*</code> を実行し、鍵ペアが生成されたことが確認できる画面</li>
+<li><code>sudo sshd -t</code> と <code>sudo systemctl status ssh</code> を実行し、SSH設定が有効でサービスが動作していることが確認できる画面</li>
+<li>Windows 11 クライアントからSSH接続し、パスワードなしでログインできることが確認できる画面</li>
+<li>Windows 11 クライアントで <code>scp .\sample.txt student@192.168.100.xxx:~/sample_from_win.txt</code> と <code>scp student@192.168.100.xxx:~/sample_from_win.txt .\sample_from_server.txt</code> を実行し、送受信が成功したことが確認できる画面</li>
+<li>Windows 11 クライアントで <code>Test-NetConnection 192.168.100.xxx -Port 22</code>、<code>Test-NetConnection 192.168.100.xxx -Port 80</code>、<code>Test-NetConnection 192.168.100.xxx -Port 443</code> を実行し、許可した通信と遮断された通信の違いが確認できる画面</li>
+</ol>
+<h2 id="4">4. 課題</h2>
+<ol>
+<li>ファイアウォール設定にて、ポート22（SSH）を許可した理由を説明せよ。また、不要なポートを開放したままにすることの危険性を考察せよ。</li>
+<li>パスワード認証を禁止し、鍵認証のみに制限するセキュリティ上の理由は何か。</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
