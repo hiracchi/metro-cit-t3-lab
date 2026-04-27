@@ -39,7 +39,7 @@ sudo systemctl status bind9
 1日目で設定した hosts を前提に、DNSサーバーへの問い合わせ結果を確認する。
 
 ```powershell
-nslookup www.t3.metro-cit.internal 192.168.1.10
+nslookup www.t3.metro-cit.internal 192.168.100.xxx
 ```
 
 ## 3. 結果と考察
@@ -53,14 +53,14 @@ systemctl status bind9
 **[Windows 11 ターミナル] 確認コマンド:**
 
 ```powershell
-nslookup www.t3.metro-cit.internal 192.168.1.10
+nslookup www.t3.metro-cit.internal 192.168.100.xxx
 ```
 
 📷 **【エビデンス取得】** 以下の3点をキャプチャし、図表のルールにしたがってレポートにまとめること。
 
 1. `dig @localhost www.t3.metro-cit.internal` を実行し、DNS名前解決結果が表示される画面
 2. `systemctl status bind9` を実行し、DNSサービスが動作していることがわかる画面
-3. `nslookup www.t3.metro-cit.internal 192.168.1.10` をWindows 11 から実行し、名前解決できる画面
+3. `nslookup www.t3.metro-cit.internal 192.168.100.xxx` をWindows 11 から実行し、名前解決できる画面
 
 ## 4. 課題
 1. DNSの「正引き」と「逆引き」の違いは何か。

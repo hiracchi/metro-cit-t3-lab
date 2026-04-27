@@ -102,10 +102,10 @@ sudo docker compose logs --tail 20
 1. [Windows 11 ターミナル] クライアントから到達確認を行う
 
 ```powershell
-Test-NetConnection 192.168.1.10 -Port 8080
+Test-NetConnection 192.168.100.xxx -Port 8080
 ```
 
-1. [Windows 11 ターミナル] Webブラウザで `http://192.168.1.10:8080` にアクセスし、whoamiコンテナの応答画面が表示されることを確認する
+1. [Windows 11 ターミナル] Webブラウザで `http://192.168.100.xxx:8080` にアクセスし、whoamiコンテナの応答画面が表示されることを確認する
 
 1. [Ubuntuサーバー ターミナル] Composeで起動したコンテナを停止・削除する
 
@@ -137,7 +137,7 @@ sudo docker compose down
 **[Windows 11 ターミナル] 確認コマンド:**
 
 ```powershell
-Test-NetConnection 192.168.1.10 -Port 8080
+Test-NetConnection 192.168.100.xxx -Port 8080
 ```
 
 📷 **【エビデンス取得】** 以下の6点をキャプチャし、図表のルールにしたがってレポートにまとめること。
@@ -147,7 +147,7 @@ Test-NetConnection 192.168.1.10 -Port 8080
 3. `sudo docker ps -a` または `sudo docker images` を実行し、Dockerがコンテナやイメージを管理していることがわかる画面
 4. `sudo docker compose version` を実行し、Composeプラグインが利用可能であることがわかる画面
 5. `sudo docker compose config` と `sudo docker compose ps` を実行し、Compose定義が正しく解釈されて whoami コンテナが起動していることがわかる画面
-6. `curl http://localhost:8080`、`Test-NetConnection 192.168.1.10 -Port 8080`、またはブラウザ表示を確認し、Composeで起動した whoami コンテナへサーバー側とクライアント側の両方からアクセスできることがわかる画面
+6. `curl http://localhost:8080`、`Test-NetConnection 192.168.100.xxx -Port 8080`、またはブラウザ表示を確認し、Composeで起動した whoami コンテナへサーバー側とクライアント側の両方からアクセスできることがわかる画面
 
 ## 4. 課題
 1. コンテナ型仮想化とハイパーバイザ型仮想化の違いを説明せよ。

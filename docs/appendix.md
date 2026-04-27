@@ -42,7 +42,7 @@ journalctl -u ssh -n 30             # サービスログ表示
 ### 1-4. パイプとリダイレクト
 
 ```bash
-cat access.log | grep 192.168.1.10  # パイプ（|）で結果を渡す
+cat access.log | grep 192.168.100.xxx  # パイプ（|）で結果を渡す
 echo "hello" > out.txt             # 上書き出力
 echo "world" >> out.txt            # 追記出力
 command 2> err.log                  # エラー出力のみ保存
