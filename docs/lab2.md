@@ -186,15 +186,15 @@ scp student@192.168.100.xxx:~/sample_from_win.txt sample_from_server.txt
 
 ```powershell
 New-Item -ItemType Directory -Force -Path $env:USERPROFILE\.ssh
-ssh-keygen -t ed25519 -C "t3-lab" -f $env:USERPROFILE\.ssh\id_ed25519_t3
+ssh-keygen -t ed25519 -C "t3-lab" -f $env:USERPROFILE\.ssh\id_ed25519
 Test-NetConnection 192.168.100.xxx -Port 22
-ssh -i $env:USERPROFILE\.ssh\id_ed25519_t3 student@192.168.100.xxx
+ssh -i $env:USERPROFILE\.ssh\id_ed25519 student@192.168.100.xxx
 ```
 
 📷 **【エビデンス取得】** 以下の6点をスクリーンショットで取得し、図としてレポートに挿入・説明すること。
 
 1. `sudo ufw status numbered` を実行し、必要なポートのみが許可されていることが確認できる画面
-2. Windows 11 クライアントで `ssh-keygen -t ed25519 -C "t3-lab" -f $env:USERPROFILE\.ssh\id_ed25519_t3` と `Get-ChildItem $env:USERPROFILE\.ssh\id_ed25519_t3*` を実行し、鍵ペアが生成されたことが確認できる画面
+2. Windows 11 クライアントで `ssh-keygen -t ed25519 -C "t3-lab" -f $env:USERPROFILE\.ssh\id_ed25519` と `Get-ChildItem $env:USERPROFILE\.ssh\id_ed25519*` を実行し、鍵ペアが生成されたことが確認できる画面
 3. `sudo sshd -t` と `sudo systemctl status ssh` を実行し、SSH設定が有効でサービスが動作していることが確認できる画面
 4. Windows 11 クライアントからSSH接続し、パスワードなしでログインできることが確認できる画面
 5. Windows 11 クライアントで `scp sample.txt student@192.168.100.xxx:~/sample_from_win.txt` と `scp student@192.168.100.xxx:~/sample_from_win.txt sample_from_server.txt` を実行し、送受信が成功したことが確認できる画面
