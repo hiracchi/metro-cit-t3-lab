@@ -97,7 +97,41 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 
     作成した公開鍵（`id_ed25519_t3.pub`）をサーバーへ登録する。その後、サーバー側の `/etc/ssh/sshd_config` を編集し、鍵認証を有効化したうえでパスワード認証を無効化する。
 
-    例（サーバー側設定）:
+    公開鍵の登録手順（例）：
+
+    1. `[Windows 11 ターミナル]` で公開鍵の内容を表示する。
+
+    ```powershell
+    type $env:USERPROFILE\.ssh\id_ed25519_t3.pub
+    ```
+
+    ※ デフォルト名で作成した場合は以下を使用する。
+
+    ```powershell
+    type $env:USERPROFILE\.ssh\id_ed25519.pub
+    ```
+
+    2. 表示された1行の公開鍵文字列をコピーし、`[Ubuntuサーバー ターミナル]` で `~/.ssh/authorized_keys` に追記する。
+
+    ```bash
+    mkdir -p ~/.ssh
+    chmod 700 ~/.ssh
+    nano ~/.ssh/authorized_keys
+    chmod 600 ~/.ssh/authorized_keys
+    ```
+
+    `nano` を開いたら公開鍵文字列を1行で貼り付けて保存する。
+
+    sshd_config 編集例:
+
+    ```conf
+    PubkeyAuthentication yes
+    PasswordAuthentication no
+    KbdInteractiveAuthentication no
+    PermitRootLogin no
+    ```
+
+    sshd再起動と確認:
 
     ```bash
     sudo sshd -t
@@ -108,10 +142,10 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
     設定後、`[Windows 11 ターミナル]` から以下のコマンドを実行してSSH接続し、パスワードなしでログインできることを確認する。
 
     ```powershell
-    ssh -i $env:USERPROFILE\.ssh\id_ed25519_t3 student@192.168.100.xxx
+    ssh -i <SSH秘密鍵> [<ユーザー名>@]<ホスト名またはIPアドレス>
     ```
 
-1. [Windows 11 ターミナル] SSHファイル転送（scp）演習
+2. [Windows 11 ターミナル] SSHファイル転送（scp）演習
 
     Windows 11 クライアントからサーバーへファイルを送信し、サーバーからクライアントへファイルを受信する。送受信の両方を実施し、リモート運用時の基本操作を確認する。
 
