@@ -51,7 +51,39 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 
 1. [Windows 11 ターミナル] Windows 11でのSSH鍵作成
 
-    Windows 11 のPowerShellでSSH鍵ペアを作成する。あらかじめ `.ssh` ディレクトリを作成し、鍵の保存場所とファイル名を指定して作成後に公開鍵ファイルが生成されていることを確認する。
+    Windows 11 でSSH鍵ペアを作成する。以下の2つの方法がある。
+
+    **方法1: ssh-keygen コマンドを使用する（推奨）**
+
+    `ssh-keygen` コマンドを使用してSSH鍵ペアを作成する。このコマンドは Windows 11 の PowerShell や Command Prompt から直接実行できる。
+
+    デフォルトの保存場所（`$env:USERPROFILE\.ssh\id_ed25519`）に保存する場合：
+
+    ```powershell
+    ssh-keygen -t ed25519 -C "t3-lab"
+    ```
+
+    ここで `-C` はコメント（comment）を指定するオプションで、鍵の識別用メモとして記録されます。実行時にパスフレーズの入力を求められたら、パスフレーズを入力するか、何も入力せずに Enter キーを押して完了させる。鍵の生成が完了したことを確認する。
+
+    ```powershell
+    Get-ChildItem $env:USERPROFILE\.ssh\id_ed25519*
+    ```
+
+    保存場所を指定する場合（例：`id_ed25519_t3` というファイル名で保存）：
+
+    ```powershell
+    ssh-keygen -t ed25519 -C "t3-lab" -f $env:USERPROFILE\.ssh\id_ed25519_t3
+    ```
+
+    実行後、鍵の生成が完了したことを確認する。
+
+    ```powershell
+    Get-ChildItem $env:USERPROFILE\.ssh\id_ed25519_t3*
+    ```
+
+    **方法2: PowerShell コマンドを使用する**
+
+    PowerShell のネイティブコマンドを使用してSSH鍵を作成することもできる。あらかじめ `.ssh` ディレクトリを作成し、`ssh-keygen` コマンドで鍵を生成する。
 
     ```powershell
     New-Item -ItemType Directory -Force -Path $env:USERPROFILE\.ssh
@@ -83,6 +115,15 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 
     Windows 11 クライアントからサーバーへファイルを送信し、サーバーからクライアントへファイルを受信する。送受信の両方を実施し、リモート運用時の基本操作を確認する。
 
+    PowerShell またはコマンドプロンプトから `scp` コマンドで実行できます。
+
+    ```bash
+    scp sample.txt student@192.168.100.xxx:~/sample_from_win.txt
+    scp student@192.168.100.xxx:~/sample_from_win.txt sample_from_server.txt
+    ```
+
+    または PowerShell で相対パスを指定する場合：
+
     ```powershell
     scp .\sample.txt student@192.168.100.xxx:~/sample_from_win.txt
     scp student@192.168.100.xxx:~/sample_from_win.txt .\sample_from_server.txt
@@ -104,13 +145,16 @@ ls -l ~/sample_from_win.txt
 
 **[Windows 11 ターミナル]**
 
+```bash
+scp sample.txt student@192.168.100.xxx:~/sample_from_win.txt
+scp student@192.168.100.xxx:~/sample_from_win.txt sample_from_server.txt
+```
+
 ```powershell
 New-Item -ItemType Directory -Force -Path $env:USERPROFILE\.ssh
 ssh-keygen -t ed25519 -C "t3-lab" -f $env:USERPROFILE\.ssh\id_ed25519_t3
 Test-NetConnection 192.168.100.xxx -Port 22
 ssh -i $env:USERPROFILE\.ssh\id_ed25519_t3 student@192.168.100.xxx
-scp .\sample.txt student@192.168.100.xxx:~/sample_from_win.txt
-scp student@192.168.100.xxx:~/sample_from_win.txt .\sample_from_server.txt
 ```
 
 📷 **【エビデンス取得】** 以下の6点をスクリーンショットで取得し、図としてレポートに挿入・説明すること。
@@ -119,7 +163,7 @@ scp student@192.168.100.xxx:~/sample_from_win.txt .\sample_from_server.txt
 2. Windows 11 クライアントで `ssh-keygen -t ed25519 -C "t3-lab" -f $env:USERPROFILE\.ssh\id_ed25519_t3` と `Get-ChildItem $env:USERPROFILE\.ssh\id_ed25519_t3*` を実行し、鍵ペアが生成されたことが確認できる画面
 3. `sudo sshd -t` と `sudo systemctl status ssh` を実行し、SSH設定が有効でサービスが動作していることが確認できる画面
 4. Windows 11 クライアントからSSH接続し、パスワードなしでログインできることが確認できる画面
-5. Windows 11 クライアントで `scp .\sample.txt student@192.168.100.xxx:~/sample_from_win.txt` と `scp student@192.168.100.xxx:~/sample_from_win.txt .\sample_from_server.txt` を実行し、送受信が成功したことが確認できる画面
+5. Windows 11 クライアントで `scp sample.txt student@192.168.100.xxx:~/sample_from_win.txt` と `scp student@192.168.100.xxx:~/sample_from_win.txt sample_from_server.txt` を実行し、送受信が成功したことが確認できる画面
 6. Windows 11 クライアントで `Test-NetConnection 192.168.100.xxx -Port 22`、`Test-NetConnection 192.168.100.xxx -Port 80`、`Test-NetConnection 192.168.100.xxx -Port 443` を実行し、許可した通信と遮断された通信の違いが確認できる画面
 
 ## 4. 課題
