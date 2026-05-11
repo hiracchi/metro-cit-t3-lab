@@ -69,16 +69,16 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
     Get-ChildItem $env:USERPROFILE\.ssh\id_ed25519*
     ```
 
-    保存場所を指定する場合（例：`id_ed25519_t3` というファイル名で保存）：
+    保存場所を指定する場合（例：`id_ed25519` というファイル名で保存）：
 
     ```powershell
-    ssh-keygen -t ed25519 -C "t3-lab" -f $env:USERPROFILE\.ssh\id_ed25519_t3
+    ssh-keygen -t ed25519 -C "t3-lab" -f $env:USERPROFILE\.ssh\id_ed25519
     ```
 
     実行後、鍵の生成が完了したことを確認する。
 
     ```powershell
-    Get-ChildItem $env:USERPROFILE\.ssh\id_ed25519_t3*
+    Get-ChildItem $env:USERPROFILE\.ssh\id_ed25519*
     ```
 
     **方法2: PowerShell コマンドを使用する**
@@ -87,22 +87,37 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 
     ```powershell
     New-Item -ItemType Directory -Force -Path $env:USERPROFILE\.ssh
-    ssh-keygen -t ed25519 -C "t3-lab" -f $env:USERPROFILE\.ssh\id_ed25519_t3
-    Get-ChildItem $env:USERPROFILE\.ssh\id_ed25519_t3*
+    ssh-keygen -t ed25519 -C "t3-lab" -f $env:USERPROFILE\.ssh\id_ed25519
+    Get-ChildItem $env:USERPROFILE\.ssh\id_ed25519*
     ```
 
-    必要に応じて `id_ed25519_t3.pub` の内容を確認し、次の手順でサーバーへ登録する。
+    必要に応じて `id_ed25519.pub` の内容を確認し、次の手順でサーバーへ登録する。
 
 1. [Ubuntuサーバー ターミナル] SSH鍵認証の設定
 
-    作成した公開鍵（`id_ed25519_t3.pub`）をサーバーへ登録する。その後、サーバー側の `/etc/ssh/sshd_config` を編集し、鍵認証を有効化したうえでパスワード認証を無効化する。
+    作成した公開鍵（`id_ed25519.pub`）をサーバーへ登録する。公開鍵を設置する段階では、まだパスワード認証を有効のままにしておき、パスワード接続で登録作業を行う。公開鍵認証でのログイン確認後に、パスワード認証を無効化する。
 
     公開鍵の登録手順（例）：
 
-    1. `[Windows 11 ターミナル]` で公開鍵の内容を表示する。
+    1. `[Windows 11 ターミナル]` から、まずパスワード認証でサーバーへ接続する。
 
     ```powershell
-    type $env:USERPROFILE\.ssh\id_ed25519_t3.pub
+    ssh student@192.168.100.xxx
+    ```
+
+    2. `[Ubuntuサーバー ターミナル]` で `.ssh` ディレクトリと `authorized_keys` を作成し、権限を設定する。
+
+    ```bash
+    mkdir -p ~/.ssh
+    chmod 700 ~/.ssh
+    touch ~/.ssh/authorized_keys
+    chmod 600 ~/.ssh/authorized_keys
+    ```
+
+    3. `[Windows 11 ターミナル]` で公開鍵の内容を表示する。
+
+    ```powershell
+    type $env:USERPROFILE\.ssh\id_ed25519.pub
     ```
 
     ※ デフォルト名で作成した場合は以下を使用する。
@@ -111,16 +126,19 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
     type $env:USERPROFILE\.ssh\id_ed25519.pub
     ```
 
-    2. 表示された1行の公開鍵文字列をコピーし、`[Ubuntuサーバー ターミナル]` で `~/.ssh/authorized_keys` に追記する。
+    4. 表示された1行の公開鍵文字列をコピーし、`[Ubuntuサーバー ターミナル]` で `~/.ssh/authorized_keys` に1行で追記して保存する。
 
     ```bash
-    mkdir -p ~/.ssh
-    chmod 700 ~/.ssh
     nano ~/.ssh/authorized_keys
-    chmod 600 ~/.ssh/authorized_keys
     ```
 
-    `nano` を開いたら公開鍵文字列を1行で貼り付けて保存する。
+    5. `[Windows 11 ターミナル]` から秘密鍵を指定して接続し、パスワードなしでログインできることを確認する。
+
+    ```powershell
+    ssh -i $env:USERPROFILE\.ssh\id_ed25519 student@192.168.100.xxx
+    ```
+
+    ※ デフォルト名で作成した場合は `-i` を省略して `ssh student@192.168.100.xxx` としてよい。
 
     sshd_config 編集例:
 
@@ -139,10 +157,10 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
     sudo systemctl status ssh
     ```
 
-    設定後、`[Windows 11 ターミナル]` から以下のコマンドを実行してSSH接続し、パスワードなしでログインできることを確認する。
+    上記設定を反映した後、`[Windows 11 ターミナル]` からSSH接続し、パスワードなしでログインできることを再確認する。
 
     ```powershell
-    ssh -i <SSH秘密鍵> [<ユーザー名>@]<ホスト名またはIPアドレス>
+    ssh -i $env:USERPROFILE\.ssh\id_ed25519 student@192.168.100.xxx
     ```
 
 2. [Windows 11 ターミナル] SSHファイル転送（scp）演習
