@@ -11,12 +11,12 @@ BIND9を用いたDNSサーバーの基本設定を行い、ホスト名とIPア�
 ## 作業区分ラベル
 - `[Webブラウザ(Proxmox)]`: Proxmoxの画面操作
 - `[Windows 11 ターミナル]`: Windows 11 の PowerShell 操作
-- `[Ubuntuサーバー ターミナル]`: Ubuntu Server 上のコマンド操作
+- `[Windows 11 ターミナル（SSH接続）]`: Windows 11 からSSH接続した Ubuntu Server 上のコマンド操作
 
 > コマンド表記ルール: `bash` ブロックは推奨手順（Windows Terminalでbash互換エイリアスが使える場合はこちらを優先）、`powershell` ブロックはPowerShell固有記法の参考例。
 
 ## 2. 実験方法（使用機器と手順）
-1. [Ubuntuサーバー ターミナル] DNSサーバー（BIND9）のインストール
+1. [Windows 11 ターミナル（SSH接続）] DNSサーバー（BIND9）のインストール
 
 bash（推奨）:
 
@@ -25,11 +25,11 @@ sudo apt install -y bind9 dnsutils
 sudo ufw allow 53/udp
 ```
 
-1. [Ubuntuサーバー ターミナル] DNSゾーン設定
+1. [Windows 11 ターミナル（SSH接続）] DNSゾーン設定
 
 `/etc/bind/named.conf.local` に `t3.metro-cit.internal` 用のゾーン設定を追加し、ゾーンファイルを作成して `www.t3.metro-cit.internal` を自分のサーバーIPに対応付ける。
 
-1. [Ubuntuサーバー ターミナル] DNS設定確認と再起動
+1. [Windows 11 ターミナル（SSH接続）] DNS設定確認と再起動
 
 bash（推奨）:
 
@@ -57,7 +57,7 @@ nslookup www.t3.metro-cit.internal 192.168.100.xxx
 ```
 
 ## 3. 結果と考察
-**[Ubuntuサーバー ターミナル] 確認コマンド:**
+**[Windows 11 ターミナル（SSH接続）] 確認コマンド:**
 
 bash（推奨）:
 

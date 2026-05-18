@@ -13,7 +13,7 @@ Dockerをセットアップし、まず単体コンテナの実行を体験し�
 ## 作業区分ラベル
 - `[Webブラウザ(Proxmox)]`: Proxmoxの画面操作
 - `[Windows 11 ターミナル]`: Windows 11 の PowerShell 操作
-- `[Ubuntuサーバー ターミナル]`: Ubuntu Server 上のコマンド操作
+- `[Windows 11 ターミナル（SSH接続）]`: Windows 11 からSSH接続した Ubuntu Server 上のコマンド操作
 
 > コマンド表記ルール: `bash` ブロックは推奨手順（Windows Terminalでbash互換エイリアスが使える場合はこちらを優先）、`powershell` ブロックはPowerShell固有記法の参考例。
 
@@ -22,7 +22,7 @@ Dockerをセットアップし、まず単体コンテナの実行を体験し�
 
 ### 2.1 Docker単体の基本操作を確認する
 
-1. [Ubuntuサーバー ターミナル] Dockerのインストール
+1. [Windows 11 ターミナル（SSH接続）] Dockerのインストール
 
 bash（推奨）:
 
@@ -31,7 +31,7 @@ sudo apt update
 sudo apt install -y docker.io docker-compose-v2
 ```
 
-1. [Ubuntuサーバー ターミナル] Dockerサービスの有効化
+1. [Windows 11 ターミナル（SSH接続）] Dockerサービスの有効化
 
 bash（推奨）:
 
@@ -41,7 +41,7 @@ sudo systemctl status docker
 docker --version
 ```
 
-1. [Ubuntuサーバー ターミナル] 単体コンテナの動作確認
+1. [Windows 11 ターミナル（SSH接続）] 単体コンテナの動作確認
 
 bash（推奨）:
 
@@ -49,7 +49,7 @@ bash（推奨）:
 sudo docker run --rm hello-world
 ```
 
-1. [Ubuntuサーバー ターミナル] 起動中コンテナと取得済みイメージを確認する
+1. [Windows 11 ターミナル（SSH接続）] 起動中コンテナと取得済みイメージを確認する
 
 bash（推奨）:
 
@@ -60,7 +60,7 @@ sudo docker images
 
 ### 2.2 Docker Composeで構成管理を体験する
 
-1. [Ubuntuサーバー ターミナル] Composeプラグインが利用できることを確認する
+1. [Windows 11 ターミナル（SSH接続）] Composeプラグインが利用できることを確認する
 
 bash（推奨）:
 
@@ -68,7 +68,7 @@ bash（推奨）:
 sudo docker compose version
 ```
 
-1. [Ubuntuサーバー ターミナル] `docker compose` の動作確認用ディレクトリを作成する
+1. [Windows 11 ターミナル（SSH接続）] `docker compose` の動作確認用ディレクトリを作成する
 
 bash（推奨）:
 
@@ -77,7 +77,7 @@ sudo mkdir -p /opt/compose-demo
 cd /opt/compose-demo
 ```
 
-1. [Ubuntuサーバー ターミナル] `compose.yaml` を作成する
+1. [Windows 11 ターミナル（SSH接続）] `compose.yaml` を作成する
 
 bash（推奨）:
 
@@ -97,7 +97,7 @@ services:
     restart: unless-stopped
 ```
 
-1. [Ubuntuサーバー ターミナル] Compose定義を検証して起動する
+1. [Windows 11 ターミナル（SSH接続）] Compose定義を検証して起動する
 
 bash（推奨）:
 
@@ -108,7 +108,7 @@ sudo docker compose up -d
 sudo docker compose ps
 ```
 
-1. [Ubuntuサーバー ターミナル] 起動したコンテナを検証する
+1. [Windows 11 ターミナル（SSH接続）] 起動したコンテナを検証する
 
 bash（推奨）:
 
@@ -129,7 +129,7 @@ Test-NetConnection 192.168.100.xxx -Port 8080
 
 1. [Windows 11 ターミナル] Webブラウザで `http://192.168.100.xxx:8080` にアクセスし、whoamiコンテナの応答画面が表示されることを確認する
 
-1. [Ubuntuサーバー ターミナル] Composeで起動したコンテナを停止・削除する
+1. [Windows 11 ターミナル（SSH接続）] Composeで起動したコンテナを停止・削除する
 
 bash（推奨）:
 
@@ -140,7 +140,7 @@ sudo docker compose ps
 ```
 
 ## 3. 結果と考察
-**[Ubuntuサーバー ターミナル] 確認コマンド:**
+**[Windows 11 ターミナル（SSH接続）] 確認コマンド:**
 
 bash（推奨）:
 

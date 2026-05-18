@@ -19,13 +19,13 @@ Docker導入済みの環境を前提としてローカルLLM環境を構築し�
 ## 作業区分ラベル
 - `[Webブラウザ(Proxmox)]`: Proxmoxの画面操作
 - `[Windows 11 ターミナル]`: Windows 11 の PowerShell 操作
-- `[Ubuntuサーバー ターミナル]`: Ubuntu Server 上のコマンド操作
+- `[Windows 11 ターミナル（SSH接続）]`: Windows 11 からSSH接続した Ubuntu Server 上のコマンド操作
 
 > コマンド表記ルール: `bash` ブロックは推奨手順（Windows Terminalでbash互換エイリアスが使える場合はこちらを優先）、`powershell` ブロックはPowerShell固有記法の参考例。
 
 ## 2. 実験方法（使用機器と手順）
 
-1. [Ubuntuサーバー ターミナル] Ollamaインストールとモデル実行
+1. [Windows 11 ターミナル（SSH接続）] Ollamaインストールとモデル実行
 
 bash（推奨）:
 
@@ -40,7 +40,7 @@ ollama run gemma:2b
 
 WindowsのPowerShellから、`curl`を使ってUbuntu上のOllama APIにプロンプトを投げる。
 
-1. [Ubuntuサーバー ターミナル] Dockerネットワークと作業用ディレクトリの準備
+1. [Windows 11 ターミナル（SSH接続）] Dockerネットワークと作業用ディレクトリの準備
 
     4日目にComposeで起動したNginxコンテナ（`nginx-proxy`）と、これから起動するOpen WebUIコンテナを同じDockerネットワークへ参加させる。
 
@@ -52,7 +52,7 @@ WindowsのPowerShellから、`curl`を使ってUbuntu上のOllama APIにプロ�
     sudo mkdir -p /opt/nginx/conf.d
     ```
 
-1. [Ubuntuサーバー ターミナル] 4日目のNginx Compose定義を更新する
+1. [Windows 11 ターミナル（SSH接続）] 4日目のNginx Compose定義を更新する
 
     Open WebUI へリバースプロキシできるように、4日目に作成した `/opt/nginx/compose.yaml` に設定ディレクトリのマウントと外部ネットワークを追加する。
 
@@ -108,7 +108,7 @@ WindowsのPowerShellから、`curl`を使ってUbuntu上のOllama APIにプロ�
     sudo docker compose ps
     ```
 
-1. [Ubuntuサーバー ターミナル] Open WebUI 用の Compose 定義を作成する
+1. [Windows 11 ターミナル（SSH接続）] Open WebUI 用の Compose 定義を作成する
 
     Ollamaをブラウザから利用するため、Docker Compose で Open WebUI コンテナを起動する。
 
@@ -143,7 +143,7 @@ WindowsのPowerShellから、`curl`を使ってUbuntu上のOllama APIにプロ�
         external: true
     ```
 
-1. [Ubuntuサーバー ターミナル] Webインターフェースを Compose で起動する
+1. [Windows 11 ターミナル（SSH接続）] Webインターフェースを Compose で起動する
 
     bash（推奨）:
 
@@ -155,7 +155,7 @@ WindowsのPowerShellから、`curl`を使ってUbuntu上のOllama APIにプロ�
     sudo docker compose logs --tail 20
     ```
 
-1. [Ubuntuサーバー ターミナル] NginxによるWebインターフェース公開設定
+1. [Windows 11 ターミナル（SSH接続）] NginxによるWebインターフェース公開設定
 
     4日目にComposeで導入したNginxコンテナ（`nginx-proxy`）を利用し、Open WebUIへリバースプロキシする。設定をホスト側へ保存し、Composeで起動中のNginxコンテナへ反映する。
 
@@ -170,7 +170,7 @@ WindowsのPowerShellから、`curl`を使ってUbuntu上のOllama APIにプロ�
 
     設定ファイルでは、`location /` の中で `proxy_pass http://open-webui:8080;` を記述し、`http://[サーバーIP]/` からOpen WebUIへ接続できるようにする。
 
-1. [Ubuntuサーバー ターミナル] フロントエンドとバックエンドの構築
+1. [Windows 11 ターミナル（SSH接続）] フロントエンドとバックエンドの構築
 
     `index.html` に入力フォームを作成し（Webフロントエンド）、PHPやPython(Flask)等を用い、Webフォームの入力をOllama APIに転送し、結果を表示する「AIチャット画面」を構築する（バックエンド連携）。
 
@@ -197,7 +197,7 @@ curl http://[自分のIP]:11434/api/generate -d '{
 }'
 ```
 
-`[Ubuntuサーバー ターミナル]` では、以下のコマンドで Compose による起動状態を確認する。
+`[Windows 11 ターミナル（SSH接続）]` では、以下のコマンドで Compose による起動状態を確認する。
 
 bash（推奨）:
 

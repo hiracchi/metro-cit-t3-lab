@@ -17,14 +17,14 @@ Webサーバー（Nginx）を構築し、HTML配信の動作を確認する。�
 ## 作業区分ラベル
 - `[Webブラウザ(Proxmox)]`: Proxmoxの画面操作
 - `[Windows 11 ターミナル]`: Windows 11 の PowerShell 操作
-- `[Ubuntuサーバー ターミナル]`: Ubuntu Server 上のコマンド操作
+- `[Windows 11 ターミナル（SSH接続）]`: Windows 11 からSSH接続した Ubuntu Server 上のコマンド操作
 
 > コマンド表記ルール: `bash` ブロックは推奨手順（Windows Terminalでbash互換エイリアスが使える場合はこちらを優先）、`powershell` ブロックはPowerShell固有記法の参考例。
 
 ## 2. 実験方法（使用機器と手順）
 ### 2.1 第1段階：Nginxのみを実行・確認する
 
-1. [Ubuntuサーバー ターミナル] Nginx用ディレクトリと Compose 定義ファイルを作成する
+1. [Windows 11 ターミナル（SSH接続）] Nginx用ディレクトリと Compose 定義ファイルを作成する
 
 bash（推奨）:
 
@@ -62,7 +62,7 @@ services:
       - /srv/report/goaccess-report.html
 ```
 
-1. [Ubuntuサーバー ターミナル] Nginxコンテナを Compose で起動し、初期確認を行う
+1. [Windows 11 ターミナル（SSH接続）] Nginxコンテナを Compose で起動し、初期確認を行う
 
 bash（推奨）:
 
@@ -73,9 +73,9 @@ sudo docker compose up -d
 sudo docker compose ps
 ```
 
-起動後、`[Ubuntuサーバー ターミナル]` で `curl` を実行するか、`[Windows 11 ターミナル]` のブラウザから表示を確認する。
+起動後、`[Windows 11 ターミナル（SSH接続）]` で `curl` を実行するか、`[Windows 11 ターミナル]` のブラウザから表示を確認する。
 
-1. [Ubuntuサーバー ターミナル] HTMLファイルの作成
+1. [Windows 11 ターミナル（SSH接続）] HTMLファイルの作成
 
     Docker上のNginxから配信するため、ホスト側の `/opt/nginx/html/index.html` を作成する。簡単な見出しと本文を記述し、ブラウザから表示できるようにする。
 
@@ -107,7 +107,7 @@ sudo docker compose ps
 
 ### 2.2 第2段階：Nginx+GoAccessを実行・確認する
 
-1. [Ubuntuサーバー ターミナル] GoAccessを Docker Compose で実行し、アクセスログを可視化
+1. [Windows 11 ターミナル（SSH接続）] GoAccessを Docker Compose で実行し、アクセスログを可視化
 
   第1段階で生成されたNginxアクセスログ（`/opt/nginx/log/access.log`）を `goaccess` サービスで解析し、HTMLレポートを生成する。
 
@@ -123,7 +123,7 @@ sudo docker compose ps
   ブラウザで `http://www.t3.metro-cit.internal/goaccess-report.html` または `http://[サーバーIP]/goaccess-report.html` にアクセスし、アクセス解析レポートが表示されることを確認する。
 
 ## 3. 結果と考察
-**[Ubuntuサーバー ターミナル] 第1段階（Nginxのみ）確認コマンド:**
+**[Windows 11 ターミナル（SSH接続）] 第1段階（Nginxのみ）確認コマンド:**
 
 bash（推奨）:
 
@@ -134,7 +134,7 @@ sudo docker compose ps
 sudo docker compose logs --tail 20
 ```
 
-**[Ubuntuサーバー ターミナル] 第2段階（Nginx+GoAccess）確認コマンド:**
+**[Windows 11 ターミナル（SSH接続）] 第2段階（Nginx+GoAccess）確認コマンド:**
 
 bash（推奨）:
 
