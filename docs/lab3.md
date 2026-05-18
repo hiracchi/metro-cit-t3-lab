@@ -15,6 +15,8 @@ Dockerをセットアップし、まず単体コンテナの実行を体験し�
 - `[Windows 11 ターミナル]`: Windows 11 の PowerShell 操作
 - `[Ubuntuサーバー ターミナル]`: Ubuntu Server 上のコマンド操作
 
+> コマンド表記ルール: `bash` ブロックは推奨手順（Windows Terminalでbash互換エイリアスが使える場合はこちらを優先）、`powershell` ブロックはPowerShell固有記法の参考例。
+
 ## 2. 実験方法（使用機器と手順）
 まず `docker run` で単体コンテナを実行し、その後で `docker compose` による構成管理を体験する。
 

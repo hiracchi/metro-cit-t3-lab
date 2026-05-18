@@ -21,6 +21,8 @@ Docker導入済みの環境を前提としてローカルLLM環境を構築し�
 - `[Windows 11 ターミナル]`: Windows 11 の PowerShell 操作
 - `[Ubuntuサーバー ターミナル]`: Ubuntu Server 上のコマンド操作
 
+> コマンド表記ルール: `bash` ブロックは推奨手順（Windows Terminalでbash互換エイリアスが使える場合はこちらを優先）、`powershell` ブロックはPowerShell固有記法の参考例。
+
 ## 2. 実験方法（使用機器と手順）
 
 1. [Ubuntuサーバー ターミナル] Ollamaインストールとモデル実行
@@ -160,6 +162,14 @@ WindowsのPowerShellから、`curl`を使ってUbuntu上のOllama APIにプロ�
 
 ## 3. 結果と考察
 `[Windows 11 ターミナル]` から以下のコマンドを実行し、API応答を確認する。
+
+```bash
+curl http://[自分のIP]:11434/api/generate -d '{
+  "model": "gemma:2b",
+  "prompt": "高専について教えて",
+  "stream": false
+}'
+```
 
 ```powershell
 curl http://[自分のIP]:11434/api/generate -d '{

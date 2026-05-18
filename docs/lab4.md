@@ -19,6 +19,8 @@ Webサーバー（Nginx）を構築し、HTML配信の動作を確認する。�
 - `[Windows 11 ターミナル]`: Windows 11 の PowerShell 操作
 - `[Ubuntuサーバー ターミナル]`: Ubuntu Server 上のコマンド操作
 
+> コマンド表記ルール: `bash` ブロックは推奨手順（Windows Terminalでbash互換エイリアスが使える場合はこちらを優先）、`powershell` ブロックはPowerShell固有記法の参考例。
+
 ## 2. 実験方法（使用機器と手順）
 ### 2.1 第1段階：Nginxのみを実行・確認する
 

@@ -13,6 +13,8 @@ BIND9を用いたDNSサーバーの基本設定を行い、ホスト名とIPア�
 - `[Windows 11 ターミナル]`: Windows 11 の PowerShell 操作
 - `[Ubuntuサーバー ターミナル]`: Ubuntu Server 上のコマンド操作
 
+> コマンド表記ルール: `bash` ブロックは推奨手順（Windows Terminalでbash互換エイリアスが使える場合はこちらを優先）、`powershell` ブロックはPowerShell固有記法の参考例。
+
 ## 2. 実験方法（使用機器と手順）
 1. [Ubuntuサーバー ターミナル] DNSサーバー（BIND9）のインストール
 
@@ -38,6 +40,10 @@ sudo systemctl status bind9
 
 1日目で設定した hosts を前提に、DNSサーバーへの問い合わせ結果を確認する。
 
+```bash
+nslookup www.t3.metro-cit.internal 192.168.100.xxx
+```
+
 ```powershell
 nslookup www.t3.metro-cit.internal 192.168.100.xxx
 ```
@@ -51,6 +57,10 @@ systemctl status bind9
 ```
 
 **[Windows 11 ターミナル] 確認コマンド:**
+
+```bash
+nslookup www.t3.metro-cit.internal 192.168.100.xxx
+```
 
 ```powershell
 nslookup www.t3.metro-cit.internal 192.168.100.xxx

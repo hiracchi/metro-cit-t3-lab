@@ -18,6 +18,8 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 - `[Windows 11 ターミナル]`: Windows 11 の PowerShell 操作
 - `[Ubuntuサーバー ターミナル]`: Ubuntu Server 上のコマンド操作
 
+> コマンド表記ルール: `bash` ブロックは推奨手順（Windows Terminalでbash互換エイリアスが使える場合はこちらを優先）、`powershell` ブロックはPowerShell固有記法の参考例。
+
 ## 2. 実験方法（使用機器と手順）
 
 1. [Ubuntuサーバー ターミナル] ファイアウォールの設定
@@ -59,11 +61,19 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 
     デフォルトの保存場所（`$env:USERPROFILE\.ssh\id_ed25519`）に保存する場合：
 
+    ```bash
+    ssh-keygen -t ed25519 -C "t3-lab"
+    ```
+
     ```powershell
     ssh-keygen -t ed25519 -C "t3-lab"
     ```
 
     ここで `-C` はコメント（comment）を指定するオプションであり、鍵の識別用メモとして記録される。実行時にパスフレーズの入力を求められたら、パスフレーズを入力するか、何も入力せずに Enter キーを押して完了させる。鍵の生成が完了したことを確認する。
+
+    ```bash
+    ls ~/.ssh/id_ed25519*
+    ```
 
     ```powershell
     Get-ChildItem $env:USERPROFILE\.ssh\id_ed25519*
@@ -71,11 +81,19 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 
     保存場所を指定する場合（例：`id_ed25519` というファイル名で保存）：
 
+    ```bash
+    ssh-keygen -t ed25519 -C "t3-lab" -f ~/.ssh/id_ed25519
+    ```
+
     ```powershell
     ssh-keygen -t ed25519 -C "t3-lab" -f $env:USERPROFILE\.ssh\id_ed25519
     ```
 
     実行後、鍵の生成が完了したことを確認する。
+
+    ```bash
+    ls ~/.ssh/id_ed25519*
+    ```
 
     ```powershell
     Get-ChildItem $env:USERPROFILE\.ssh\id_ed25519*
@@ -84,6 +102,12 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
     **方法2: PowerShell コマンドを使用する**
 
     PowerShell のネイティブコマンドを使用してSSH鍵を作成することもできる。あらかじめ `.ssh` ディレクトリを作成し、`ssh-keygen` コマンドで鍵を生成する。
+
+    ```bash
+    mkdir -p ~/.ssh
+    ssh-keygen -t ed25519 -C "t3-lab" -f ~/.ssh/id_ed25519
+    ls ~/.ssh/id_ed25519*
+    ```
 
     ```powershell
     New-Item -ItemType Directory -Force -Path $env:USERPROFILE\.ssh
@@ -101,6 +125,10 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 
     1. `[Windows 11 ターミナル]` から、まずパスワード認証でサーバーへ接続する。
 
+    ```bash
+    ssh student@192.168.100.xxx
+    ```
+
     ```powershell
     ssh student@192.168.100.xxx
     ```
@@ -116,11 +144,19 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 
     3. `[Windows 11 ターミナル]` で公開鍵の内容を表示する。
 
+    ```bash
+    cat ~/.ssh/id_ed25519.pub
+    ```
+
     ```powershell
     type $env:USERPROFILE\.ssh\id_ed25519.pub
     ```
 
     ※ デフォルト名で作成した場合は以下を使用する。
+
+    ```bash
+    cat ~/.ssh/id_ed25519.pub
+    ```
 
     ```powershell
     type $env:USERPROFILE\.ssh\id_ed25519.pub
@@ -133,6 +169,10 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
     ```
 
     5. `[Windows 11 ターミナル]` から秘密鍵を指定して接続し、パスワードなしでログインできることを確認する。
+
+    ```bash
+    ssh -i ~/.ssh/id_ed25519 student@192.168.100.xxx
+    ```
 
     ```powershell
     ssh -i $env:USERPROFILE\.ssh\id_ed25519 student@192.168.100.xxx
@@ -159,6 +199,10 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 
     上記設定を反映した後、`[Windows 11 ターミナル]` からSSH接続し、パスワードなしでログインできることを再確認する。
 
+    ```bash
+    ssh -i ~/.ssh/id_ed25519 student@192.168.100.xxx
+    ```
+
     ```powershell
     ssh -i $env:USERPROFILE\.ssh\id_ed25519 student@192.168.100.xxx
     ```
@@ -175,6 +219,11 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
     ```
 
     または PowerShell で相対パスを指定する場合：
+
+    ```bash
+    scp ./sample.txt student@192.168.100.xxx:~/sample_from_win.txt
+    scp student@192.168.100.xxx:~/sample_from_win.txt ./sample_from_server.txt
+    ```
 
     ```powershell
     scp .\sample.txt student@192.168.100.xxx:~/sample_from_win.txt
@@ -200,6 +249,9 @@ ls -l ~/sample_from_win.txt
 ```bash
 scp sample.txt student@192.168.100.xxx:~/sample_from_win.txt
 scp student@192.168.100.xxx:~/sample_from_win.txt sample_from_server.txt
+mkdir -p ~/.ssh
+ssh-keygen -t ed25519 -C "t3-lab" -f ~/.ssh/id_ed25519
+ssh -i ~/.ssh/id_ed25519 student@192.168.100.xxx
 ```
 
 ```powershell
