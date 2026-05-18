@@ -17,6 +17,7 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 - `[Webブラウザ(Proxmox)]`: Proxmoxの画面操作
 - `[Windows 11 ターミナル]`: Windows 11 の PowerShell 操作
 - `[Ubuntuサーバー ターミナル]`: Ubuntu Server 上のコマンド操作
+- `[Windows 11 ターミナル（SSH接続）]`: Windows 11 からSSHログイン後のサーバー内コマンド操作（以降はこちらを優先）
 
 > コマンド表記ルール: `bash` ブロックは推奨手順（Windows Terminalでbash互換エイリアスが使える場合はこちらを優先）、`powershell` ブロックはPowerShell固有記法の参考例。
 
@@ -56,6 +57,36 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
     ```
 
     この結果から、22/tcp には接続できること、未許可の 80/tcp と 443/tcp には接続できないことを確認する。
+
+1. [Windows 11 ターミナル] パスワード認証でのSSH接続確認
+
+    通信確認でポート22が開放されていることが確認できたので、実際にパスワード認証でサーバーに接続できることを確認する。
+
+    bash（推奨）:
+
+    ```bash
+    ssh <user>@192.168.100.xxx
+    ```
+
+    PowerShell（参考）:
+
+    ```powershell
+    ssh <user>@192.168.100.xxx
+    ```
+
+    サーバーのパスワードを入力してログインでき、`$` プロンプトが表示されることを確認する。接続確認後は `exit` コマンドでサーバーからログアウトする。
+
+    bash（推奨）:
+
+    ```bash
+    exit
+    ```
+
+    PowerShell（参考）:
+
+    ```powershell
+    exit
+    ```
 
 1. [Windows 11 ターミナル] Windows 11でのSSH鍵作成
 
@@ -154,16 +185,16 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
     bash（推奨）:
 
     ```bash
-    ssh student@192.168.100.xxx
+    ssh <user>@192.168.100.xxx
     ```
 
     PowerShell（参考）:
 
     ```powershell
-    ssh student@192.168.100.xxx
+    ssh <user>@192.168.100.xxx
     ```
 
-    2. `[Ubuntuサーバー ターミナル]` で `.ssh` ディレクトリと `authorized_keys` を作成し、権限を設定する。
+    2. `[Windows 11 ターミナル（SSH接続）]` で `.ssh` ディレクトリと `authorized_keys` を作成し、権限を設定する。
 
     bash（推奨）:
 
@@ -174,57 +205,91 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
     chmod 600 ~/.ssh/authorized_keys
     ```
 
-    3. `[Windows 11 ターミナル]` で公開鍵の内容を表示する。
+    3. `[Windows 11 ターミナル]` で接続を終了する。
 
     bash（推奨）:
 
     ```bash
-    cat ~/.ssh/id_ed25519.pub
+    exit
     ```
 
     PowerShell（参考）:
 
     ```powershell
-    type $env:USERPROFILE\.ssh\id_ed25519.pub
+    exit
     ```
 
-    ※ デフォルト名で作成した場合は以下を使用する。
+    4. `[Windows 11 ターミナル]` から `scp` コマンドで公開鍵ファイルをサーバーに転送する。
 
     bash（推奨）:
 
     ```bash
-    cat ~/.ssh/id_ed25519.pub
+    scp ~/.ssh/id_ed25519.pub <user>@192.168.100.xxx:~/id_ed25519.pub
     ```
 
     PowerShell（参考）:
 
     ```powershell
-    type $env:USERPROFILE\.ssh\id_ed25519.pub
+    scp $env:USERPROFILE\.ssh\id_ed25519.pub <user>@192.168.100.xxx:~/id_ed25519.pub
     ```
 
-    4. 表示された1行の公開鍵文字列をコピーし、`[Ubuntuサーバー ターミナル]` で `~/.ssh/authorized_keys` に1行で追記して保存する。
+    5. `[Windows 11 ターミナル]` から再度パスワード認証でサーバーへ接続する。
 
     bash（推奨）:
 
     ```bash
-    nano ~/.ssh/authorized_keys
-    ```
-
-    5. `[Windows 11 ターミナル]` から秘密鍵を指定して接続し、パスワードなしでログインできることを確認する。
-
-    bash（推奨）:
-
-    ```bash
-    ssh -i ~/.ssh/id_ed25519 student@192.168.100.xxx
+    ssh <user>@192.168.100.xxx
     ```
 
     PowerShell（参考）:
 
     ```powershell
-    ssh -i $env:USERPROFILE\.ssh\id_ed25519 student@192.168.100.xxx
+    ssh <user>@192.168.100.xxx
     ```
 
-    ※ デフォルト名で作成した場合は `-i` を省略して `ssh student@192.168.100.xxx` としてよい。
+    6. `[Windows 11 ターミナル（SSH接続）]` で転送された公開鍵の内容を `authorized_keys` に追記する。
+
+    ```bash
+    cat ~/id_ed25519.pub >> ~/.ssh/authorized_keys
+    ```
+
+    その後、公開鍵ファイルは削除して良い。
+
+    ```bash
+    rm ~/id_ed25519.pub
+    ```
+
+    7. `[Windows 11 ターミナル]` で接続を終了する。
+
+    bash（推奨）:
+
+    ```bash
+    exit
+    ```
+
+    PowerShell（参考）:
+
+    ```powershell
+    exit
+    ```
+
+    8. `[Windows 11 ターミナル]` から秘密鍵を指定して接続し、公開鍵認証でログインできることを確認する。
+
+    bash（推奨）:
+
+    ```bash
+    ssh -i ~/.ssh/id_ed25519 <user>@192.168.100.xxx
+    ```
+
+    PowerShell（参考）:
+
+    ```powershell
+    ssh -i $env:USERPROFILE\.ssh\id_ed25519 <user>@192.168.100.xxx
+    ```
+
+    ※ デフォルト名で作成した場合は `-i` を省略して `ssh <user>@192.168.100.xxx` としてよい。
+
+    9. `[Windows 11 ターミナル（SSH接続）]` SSH接続を公開鍵認証のみにする設定を行う（前項の接続確認とは別作業）。
 
     sshd_config 編集例:
 
@@ -245,18 +310,18 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
     sudo systemctl status ssh
     ```
 
-    上記設定を反映した後、`[Windows 11 ターミナル]` からSSH接続し、パスワードなしでログインできることを再確認する。
+    10. `[Windows 11 ターミナル]` からSSH接続し、設定反映後もパスワードなしでログインできることを再確認する。
 
     bash（推奨）:
 
     ```bash
-    ssh -i ~/.ssh/id_ed25519 student@192.168.100.xxx
+    ssh -i ~/.ssh/id_ed25519 <user>@192.168.100.xxx
     ```
 
     PowerShell（参考）:
 
     ```powershell
-    ssh -i $env:USERPROFILE\.ssh\id_ed25519 student@192.168.100.xxx
+    ssh -i $env:USERPROFILE\.ssh\id_ed25519 <user>@192.168.100.xxx
     ```
 
 2. [Windows 11 ターミナル] SSHファイル転送（scp）演習
@@ -268,8 +333,8 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
     bash（推奨）:
 
     ```bash
-    scp sample.txt student@192.168.100.xxx:~/sample_from_win.txt
-    scp student@192.168.100.xxx:~/sample_from_win.txt sample_from_server.txt
+    scp sample.txt <user>@192.168.100.xxx:~/sample_from_win.txt
+    scp <user>@192.168.100.xxx:~/sample_from_win.txt sample_from_server.txt
     ```
 
     または PowerShell で相対パスを指定する場合：
@@ -277,15 +342,15 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
     bash（推奨）:
 
     ```bash
-    scp ./sample.txt student@192.168.100.xxx:~/sample_from_win.txt
-    scp student@192.168.100.xxx:~/sample_from_win.txt ./sample_from_server.txt
+    scp ./sample.txt <user>@192.168.100.xxx:~/sample_from_win.txt
+    scp <user>@192.168.100.xxx:~/sample_from_win.txt ./sample_from_server.txt
     ```
 
     PowerShell（参考）:
 
     ```powershell
-    scp .\sample.txt student@192.168.100.xxx:~/sample_from_win.txt
-    scp student@192.168.100.xxx:~/sample_from_win.txt .\sample_from_server.txt
+    scp .\sample.txt <user>@192.168.100.xxx:~/sample_from_win.txt
+    scp <user>@192.168.100.xxx:~/sample_from_win.txt .\sample_from_server.txt
     ```
 
     転送後、Windows側とサーバー側でファイルの存在を確認する。
@@ -293,7 +358,7 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 ## 3. 結果と考察
 ファイアウォール設定とSSH鍵認証設定後、以下のコマンドを実行し、安全な通信制御とリモート接続が正しく行えることを確認する。
 
-**[Ubuntuサーバー ターミナル]**
+**[Windows 11 ターミナル（SSH接続）]**
 
 bash（推奨）:
 
@@ -309,11 +374,11 @@ ls -l ~/sample_from_win.txt
 bash（推奨）:
 
 ```bash
-scp sample.txt student@192.168.100.xxx:~/sample_from_win.txt
-scp student@192.168.100.xxx:~/sample_from_win.txt sample_from_server.txt
+scp sample.txt <user>@192.168.100.xxx:~/sample_from_win.txt
+scp <user>@192.168.100.xxx:~/sample_from_win.txt sample_from_server.txt
 mkdir -p ~/.ssh
 ssh-keygen -t ed25519 -C "t3-lab" -f ~/.ssh/id_ed25519
-ssh -i ~/.ssh/id_ed25519 student@192.168.100.xxx
+ssh -i ~/.ssh/id_ed25519 <user>@192.168.100.xxx
 ```
 
 PowerShell（参考）:
@@ -322,7 +387,7 @@ PowerShell（参考）:
 New-Item -ItemType Directory -Force -Path $env:USERPROFILE\.ssh
 ssh-keygen -t ed25519 -C "t3-lab" -f $env:USERPROFILE\.ssh\id_ed25519
 Test-NetConnection 192.168.100.xxx -Port 22
-ssh -i $env:USERPROFILE\.ssh\id_ed25519 student@192.168.100.xxx
+ssh -i $env:USERPROFILE\.ssh\id_ed25519 <user>@192.168.100.xxx
 ```
 
 📷 **【エビデンス取得】** 以下の6点をスクリーンショットで取得し、図としてレポートに挿入・説明すること。
@@ -331,7 +396,7 @@ ssh -i $env:USERPROFILE\.ssh\id_ed25519 student@192.168.100.xxx
 2. Windows 11 クライアントで `ssh-keygen -t ed25519 -C "t3-lab" -f $env:USERPROFILE\.ssh\id_ed25519` と `Get-ChildItem $env:USERPROFILE\.ssh\id_ed25519*` を実行し、鍵ペアが生成されたことが確認できる画面
 3. `sudo sshd -t` と `sudo systemctl status ssh` を実行し、SSH設定が有効でサービスが動作していることが確認できる画面
 4. Windows 11 クライアントからSSH接続し、パスワードなしでログインできることが確認できる画面
-5. Windows 11 クライアントで `scp sample.txt student@192.168.100.xxx:~/sample_from_win.txt` と `scp student@192.168.100.xxx:~/sample_from_win.txt sample_from_server.txt` を実行し、送受信が成功したことが確認できる画面
+5. Windows 11 クライアントで `scp sample.txt <user>@192.168.100.xxx:~/sample_from_win.txt` と `scp <user>@192.168.100.xxx:~/sample_from_win.txt sample_from_server.txt` を実行し、送受信が成功したことが確認できる画面
 6. Windows 11 クライアントで `Test-NetConnection 192.168.100.xxx -Port 22`、`Test-NetConnection 192.168.100.xxx -Port 80`、`Test-NetConnection 192.168.100.xxx -Port 443` を実行し、許可した通信と遮断された通信の違いが確認できる画面
 
 ## 4. 課題
