@@ -289,28 +289,28 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 
     ※ デフォルト名で作成した場合は `-i` を省略して `ssh <user>@192.168.100.xxx` としてよい。
 
-    9. `[Windows 11 ターミナル（SSH接続）]` SSH接続を公開鍵認証のみにする設定を行う（前項の接続確認とは別作業）。
+    9. `[Windows 11 ターミナル（SSH接続）]` SSH接続を公開鍵認証のみにする設定を行う。
 
-    sshd_config 編集例:
+        a. `/etc/ssh/sshd.config` の編集
 
-    ```conf
-    PubkeyAuthentication yes
-    PasswordAuthentication no
-    KbdInteractiveAuthentication no
-    PermitRootLogin no
-    ```
+        sshd_config 編集例:
 
-    sshd再起動と確認:
+        ```conf
+        PubkeyAuthentication yes
+        PasswordAuthentication no
+        KbdInteractiveAuthentication no
+        PermitRootLogin no
+        ```
 
-    bash（推奨）:
+        b. sshd再起動と確認:
 
-    ```bash
-    sudo sshd -t
-    sudo systemctl restart ssh
-    sudo systemctl status ssh
-    ```
+        ```bash
+        sudo sshd -t
+        sudo systemctl restart ssh
+        sudo systemctl status ssh
+        ```
 
-    10. `[Windows 11 ターミナル]` からSSH接続し、設定反映後もパスワードなしでログインできることを再確認する。
+    10. (上記接続は保ったまま) `[Windows 11 ターミナル]` からSSH接続し、設定反映後もパスワードなしでログインできることを再確認する。うまくいかなかった場合は、保持してあったssh接続から再編集・再起動する。
 
     bash（推奨）:
 
