@@ -27,6 +27,8 @@ Docker導入済みの環境を前提としてローカルLLM環境を構築し�
 
 1. [Ubuntuサーバー ターミナル] Ollamaインストールとモデル実行
 
+bash（推奨）:
+
 ```bash
 curl -fsSL https://ollama.com/install.sh | sh
 ollama run gemma:2b
@@ -42,6 +44,8 @@ WindowsのPowerShellから、`curl`を使ってUbuntu上のOllama APIにプロ�
 
     4日目にComposeで起動したNginxコンテナ（`nginx-proxy`）と、これから起動するOpen WebUIコンテナを同じDockerネットワークへ参加させる。
 
+    bash（推奨）:
+
     ```bash
     sudo docker network create app-net
     sudo mkdir -p /opt/open-webui
@@ -51,6 +55,8 @@ WindowsのPowerShellから、`curl`を使ってUbuntu上のOllama APIにプロ�
 1. [Ubuntuサーバー ターミナル] 4日目のNginx Compose定義を更新する
 
     Open WebUI へリバースプロキシできるように、4日目に作成した `/opt/nginx/compose.yaml` に設定ディレクトリのマウントと外部ネットワークを追加する。
+
+    bash（推奨）:
 
     ```bash
     sudo nano /opt/nginx/compose.yaml
@@ -93,6 +99,8 @@ WindowsのPowerShellから、`curl`を使ってUbuntu上のOllama APIにプロ�
 
     修正後、設定を反映する。
 
+    bash（推奨）:
+
     ```bash
     cd /opt/nginx
     sudo docker compose config
@@ -103,6 +111,8 @@ WindowsのPowerShellから、`curl`を使ってUbuntu上のOllama APIにプロ�
 1. [Ubuntuサーバー ターミナル] Open WebUI 用の Compose 定義を作成する
 
     Ollamaをブラウザから利用するため、Docker Compose で Open WebUI コンテナを起動する。
+
+    bash（推奨）:
 
     ```bash
     sudo nano /opt/open-webui/compose.yaml
@@ -135,6 +145,8 @@ WindowsのPowerShellから、`curl`を使ってUbuntu上のOllama APIにプロ�
 
 1. [Ubuntuサーバー ターミナル] Webインターフェースを Compose で起動する
 
+    bash（推奨）:
+
     ```bash
     cd /opt/open-webui
     sudo docker compose config
@@ -146,6 +158,8 @@ WindowsのPowerShellから、`curl`を使ってUbuntu上のOllama APIにプロ�
 1. [Ubuntuサーバー ターミナル] NginxによるWebインターフェース公開設定
 
     4日目にComposeで導入したNginxコンテナ（`nginx-proxy`）を利用し、Open WebUIへリバースプロキシする。設定をホスト側へ保存し、Composeで起動中のNginxコンテナへ反映する。
+
+    bash（推奨）:
 
     ```bash
     sudo nano /opt/nginx/conf.d/open-webui.conf
@@ -163,6 +177,8 @@ WindowsのPowerShellから、`curl`を使ってUbuntu上のOllama APIにプロ�
 ## 3. 結果と考察
 `[Windows 11 ターミナル]` から以下のコマンドを実行し、API応答を確認する。
 
+bash（推奨）:
+
 ```bash
 curl http://[自分のIP]:11434/api/generate -d '{
   "model": "gemma:2b",
@@ -170,6 +186,8 @@ curl http://[自分のIP]:11434/api/generate -d '{
   "stream": false
 }'
 ```
+
+PowerShell（参考）:
 
 ```powershell
 curl http://[自分のIP]:11434/api/generate -d '{
@@ -180,6 +198,8 @@ curl http://[自分のIP]:11434/api/generate -d '{
 ```
 
 `[Ubuntuサーバー ターミナル]` では、以下のコマンドで Compose による起動状態を確認する。
+
+bash（推奨）:
 
 ```bash
 cd /opt/nginx

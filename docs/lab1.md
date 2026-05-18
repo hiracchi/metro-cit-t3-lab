@@ -130,6 +130,8 @@ Proxmoxの基本操作を学び、Linuxサーバー（Ubuntu Server）を最小�
 
     サーバーで動作しているサービスの一覧と、管理コマンドを確認する。systemd-timesyncdサービスを例に、状態確認と再起動を試す。
 
+    bash（推奨）:
+
     ```bash
     systemctl list-units --type=service --state=running
     systemctl status systemd-timesyncd
@@ -141,6 +143,8 @@ Proxmoxの基本操作を学び、Linuxサーバー（Ubuntu Server）を最小�
 
     障害調査の基本として、`journalctl` と `dmesg` によるログ確認方法を習得する。サービス全体の直近ログ、特定サービス（systemd-timesyncd）のログ、起動ログ（カーネルメッセージ）を確認する。
 
+    bash（推奨）:
+
     ```bash
     journalctl -n 30
     journalctl -u systemd-timesyncd -n 30
@@ -151,6 +155,8 @@ Proxmoxの基本操作を学び、Linuxサーバー（Ubuntu Server）を最小�
 8. [Ubuntuサーバー ターミナル] systemd-timesyncd（NTPクライアント）の設定
 
     サーバー時刻を自動同期するため、設定ファイルを編集してNTPサーバーを `192.168.100.1` に指定する。
+
+    bash（推奨）:
 
     ```bash
     sudo nano /etc/systemd/timesyncd.conf
@@ -165,6 +171,8 @@ Proxmoxの基本操作を学び、Linuxサーバー（Ubuntu Server）を最小�
 
     設定保存後、NTP同期を有効化し、サービスを再起動して同期先を確認する。
 
+    bash（推奨）:
+
     ```bash
     sudo timedatectl set-ntp true
     sudo systemctl restart systemd-timesyncd
@@ -176,6 +184,8 @@ Proxmoxの基本操作を学び、Linuxサーバー（Ubuntu Server）を最小�
 
     OSインストール完了後にログインし、パッケージ一覧とインストール済みソフトウェアを更新する。
 
+    bash（推奨）:
+
     ```bash
     sudo apt update
     sudo apt upgrade -y
@@ -185,6 +195,8 @@ Proxmoxの基本操作を学び、Linuxサーバー（Ubuntu Server）を最小�
 10. [Ubuntuサーバー ターミナル] sudoの設定確認
 
     管理作業に必要な `sudo` が使えることを確認し、必要に応じて sudoers 設定を確認する。
+
+    bash（推奨）:
 
     ```bash
     sudo -l
@@ -202,6 +214,8 @@ Proxmoxの基本操作を学び、Linuxサーバー（Ubuntu Server）を最小�
 
     Ubuntu側で以下のコマンドを実行してGuest Agentをインストールし、起動状態を確認する。
 
+    bash（推奨）:
+
     ```bash
     sudo apt install -y qemu-guest-agent
     sudo systemctl enable --now qemu-guest-agent
@@ -212,6 +226,8 @@ Proxmoxの基本操作を学び、Linuxサーバー（Ubuntu Server）を最小�
 
     OSインストール完了後、コンソールでログインし、割り当てられたIPアドレスを確認する。
 
+    bash（推奨）:
+
     ```bash
     ip a
     ```
@@ -219,6 +235,8 @@ Proxmoxの基本操作を学び、Linuxサーバー（Ubuntu Server）を最小�
 14. [Ubuntuサーバー ターミナル] 固定IP設定
 
     1. 現在のNetplan設定ファイルをコピーする。
+
+        bash（推奨）:
 
         ```bash
         cd /etc/netplan
@@ -246,6 +264,8 @@ Proxmoxの基本操作を学び、Linuxサーバー（Ubuntu Server）を最小�
 
 ## 3. 結果と考察
 設定後、以下のコマンドを実行し、サービス管理、ログ確認、NTP同期、システム更新、sudo設定、Guest Agent、ネットワーク設定が正しく反映されていることを確認する。
+
+bash（推奨）:
 
 ```bash
 sudo apt update

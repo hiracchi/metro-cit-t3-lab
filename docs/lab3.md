@@ -24,12 +24,16 @@ Dockerをセットアップし、まず単体コンテナの実行を体験し�
 
 1. [Ubuntuサーバー ターミナル] Dockerのインストール
 
+bash（推奨）:
+
 ```bash
 sudo apt update
 sudo apt install -y docker.io docker-compose-v2
 ```
 
 1. [Ubuntuサーバー ターミナル] Dockerサービスの有効化
+
+bash（推奨）:
 
 ```bash
 sudo systemctl enable --now docker
@@ -39,11 +43,15 @@ docker --version
 
 1. [Ubuntuサーバー ターミナル] 単体コンテナの動作確認
 
+bash（推奨）:
+
 ```bash
 sudo docker run --rm hello-world
 ```
 
 1. [Ubuntuサーバー ターミナル] 起動中コンテナと取得済みイメージを確認する
+
+bash（推奨）:
 
 ```bash
 sudo docker ps -a
@@ -54,11 +62,15 @@ sudo docker images
 
 1. [Ubuntuサーバー ターミナル] Composeプラグインが利用できることを確認する
 
+bash（推奨）:
+
 ```bash
 sudo docker compose version
 ```
 
 1. [Ubuntuサーバー ターミナル] `docker compose` の動作確認用ディレクトリを作成する
+
+bash（推奨）:
 
 ```bash
 sudo mkdir -p /opt/compose-demo
@@ -66,6 +78,8 @@ cd /opt/compose-demo
 ```
 
 1. [Ubuntuサーバー ターミナル] `compose.yaml` を作成する
+
+bash（推奨）:
 
 ```bash
 sudo nano /opt/compose-demo/compose.yaml
@@ -85,6 +99,8 @@ services:
 
 1. [Ubuntuサーバー ターミナル] Compose定義を検証して起動する
 
+bash（推奨）:
+
 ```bash
 cd /opt/compose-demo
 sudo docker compose config
@@ -93,6 +109,8 @@ sudo docker compose ps
 ```
 
 1. [Ubuntuサーバー ターミナル] 起動したコンテナを検証する
+
+bash（推奨）:
 
 ```bash
 curl http://localhost:8080
@@ -103,6 +121,8 @@ sudo docker compose logs --tail 20
 
 1. [Windows 11 ターミナル] クライアントから到達確認を行う
 
+PowerShell（参考）:
+
 ```powershell
 Test-NetConnection 192.168.100.xxx -Port 8080
 ```
@@ -110,6 +130,8 @@ Test-NetConnection 192.168.100.xxx -Port 8080
 1. [Windows 11 ターミナル] Webブラウザで `http://192.168.100.xxx:8080` にアクセスし、whoamiコンテナの応答画面が表示されることを確認する
 
 1. [Ubuntuサーバー ターミナル] Composeで起動したコンテナを停止・削除する
+
+bash（推奨）:
 
 ```bash
 cd /opt/compose-demo
@@ -119,6 +141,8 @@ sudo docker compose ps
 
 ## 3. 結果と考察
 **[Ubuntuサーバー ターミナル] 確認コマンド:**
+
+bash（推奨）:
 
 ```bash
 docker --version
@@ -137,6 +161,8 @@ sudo docker compose down
 ```
 
 **[Windows 11 ターミナル] 確認コマンド:**
+
+PowerShell（参考）:
 
 ```powershell
 Test-NetConnection 192.168.100.xxx -Port 8080

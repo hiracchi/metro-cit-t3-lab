@@ -18,6 +18,8 @@ BIND9を用いたDNSサーバーの基本設定を行い、ホスト名とIPア�
 ## 2. 実験方法（使用機器と手順）
 1. [Ubuntuサーバー ターミナル] DNSサーバー（BIND9）のインストール
 
+bash（推奨）:
+
 ```bash
 sudo apt install -y bind9 dnsutils
 sudo ufw allow 53/udp
@@ -28,6 +30,8 @@ sudo ufw allow 53/udp
 `/etc/bind/named.conf.local` に `t3.metro-cit.internal` 用のゾーン設定を追加し、ゾーンファイルを作成して `www.t3.metro-cit.internal` を自分のサーバーIPに対応付ける。
 
 1. [Ubuntuサーバー ターミナル] DNS設定確認と再起動
+
+bash（推奨）:
 
 ```bash
 sudo named-checkconf
@@ -40,9 +44,13 @@ sudo systemctl status bind9
 
 1日目で設定した hosts を前提に、DNSサーバーへの問い合わせ結果を確認する。
 
+bash（推奨）:
+
 ```bash
 nslookup www.t3.metro-cit.internal 192.168.100.xxx
 ```
+
+PowerShell（参考）:
 
 ```powershell
 nslookup www.t3.metro-cit.internal 192.168.100.xxx
@@ -51,6 +59,8 @@ nslookup www.t3.metro-cit.internal 192.168.100.xxx
 ## 3. 結果と考察
 **[Ubuntuサーバー ターミナル] 確認コマンド:**
 
+bash（推奨）:
+
 ```bash
 dig @localhost www.t3.metro-cit.internal
 systemctl status bind9
@@ -58,9 +68,13 @@ systemctl status bind9
 
 **[Windows 11 ターミナル] 確認コマンド:**
 
+bash（推奨）:
+
 ```bash
 nslookup www.t3.metro-cit.internal 192.168.100.xxx
 ```
+
+PowerShell（参考）:
 
 ```powershell
 nslookup www.t3.metro-cit.internal 192.168.100.xxx

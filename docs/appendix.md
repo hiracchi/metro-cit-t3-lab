@@ -6,6 +6,8 @@
 
 ### 1-1. まず覚える移動・確認コマンド
 
+bash（推奨）:
+
 ```bash
 pwd                 # 現在の作業ディレクトリを表示
 ls                  # ファイル・ディレクトリ一覧を表示
@@ -16,6 +18,8 @@ cd ..               # 1つ上の階層へ移動
 ```
 
 ### 1-2. ファイル操作コマンド
+
+bash（推奨）:
 
 ```bash
 mkdir testdir               # ディレクトリ作成
@@ -31,6 +35,8 @@ less file.txt               # ページ送り表示（qで終了）
 
 ### 1-3. 検索・フィルタ・ログ確認
 
+bash（推奨）:
+
 ```bash
 grep "error" app.log               # 文字列検索
 grep -R "Bind9" /etc               # 再帰検索
@@ -40,6 +46,8 @@ journalctl -u ssh -n 30             # サービスログ表示
 ```
 
 ### 1-4. パイプとリダイレクト
+
+bash（推奨）:
 
 ```bash
 cat access.log | grep 192.168.100.xxx  # パイプ（|）で結果を渡す
@@ -82,6 +90,8 @@ Linuxでは、ファイルやディレクトリに次の属性がある。
 
 確認コマンド例:
 
+bash（推奨）:
+
 ```bash
 ls -l           # 種別、権限、所有者、サイズ、時刻を表示
 stat file.txt   # 属性を詳細表示
@@ -95,6 +105,8 @@ stat file.txt   # 属性を詳細表示
 - 8〜10文字目: その他ユーザー権限
 
 ### 2-5. 属性に関する基本操作
+
+bash（推奨）:
 
 ```bash
 chmod 644 file.txt                 # 権限変更（rw-r--r--）
@@ -111,6 +123,8 @@ ln -s /path/src /path/link         # シンボリックリンク作成
 
 `nano` は初心者向けのシンプルなターミナルエディタ。
 
+bash（推奨）:
+
 ```bash
 nano /etc/hosts
 ```
@@ -125,6 +139,8 @@ nano /etc/hosts
 ## 4. vim の基本操作
 
 `vim` は高機能エディタ。モードの違いを理解することが重要。
+
+bash（推奨）:
 
 ```bash
 vim /etc/netplan/00-installer-config.yaml

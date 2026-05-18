@@ -26,6 +26,8 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 
     `ufw` を用いて必要なポートのみを開放する。SSH（22/tcp）と後続の実験で利用するHTTP（80/tcp）を許可し、それ以外の不要な通信を遮断する。
 
+    bash（推奨）:
+
     ```bash
     sudo ufw allow 22/tcp
     sudo ufw enable
@@ -34,6 +36,8 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 1. [Ubuntuサーバー ターミナル] ファイアウォール設定の確認
 
     設定後、許可したポートのみが開放されていることを確認する。
+
+    bash（推奨）:
 
     ```bash
     sudo ufw status numbered
@@ -44,6 +48,8 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 
     Windows 11 のクライアント端末からサーバーに対して、許可したポートには接続でき、許可していないポートには接続できないことを確認する。PowerShell を用いて、外部から見た通信可否を確認する。`192.168.100.xxx` は自分のサーバーのIPアドレスとする。
 
+
+    PowerShell（参考）:
 
     ```powershell
     Test-NetConnection 192.168.100.xxx -Port 22
@@ -61,9 +67,13 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 
     デフォルトの保存場所（`$env:USERPROFILE\.ssh\id_ed25519`）に保存する場合：
 
+    bash（推奨）:
+
     ```bash
     ssh-keygen -t ed25519 -C "t3-lab"
     ```
+
+    PowerShell（参考）:
 
     ```powershell
     ssh-keygen -t ed25519 -C "t3-lab"
@@ -71,9 +81,13 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 
     ここで `-C` はコメント（comment）を指定するオプションであり、鍵の識別用メモとして記録される。実行時にパスフレーズの入力を求められたら、パスフレーズを入力するか、何も入力せずに Enter キーを押して完了させる。鍵の生成が完了したことを確認する。
 
+    bash（推奨）:
+
     ```bash
     ls ~/.ssh/id_ed25519*
     ```
+
+    PowerShell（参考）:
 
     ```powershell
     Get-ChildItem $env:USERPROFILE\.ssh\id_ed25519*
@@ -81,9 +95,13 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 
     保存場所を指定する場合（例：`id_ed25519` というファイル名で保存）：
 
+    bash（推奨）:
+
     ```bash
     ssh-keygen -t ed25519 -C "t3-lab" -f ~/.ssh/id_ed25519
     ```
+
+    PowerShell（参考）:
 
     ```powershell
     ssh-keygen -t ed25519 -C "t3-lab" -f $env:USERPROFILE\.ssh\id_ed25519
@@ -91,9 +109,13 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 
     実行後、鍵の生成が完了したことを確認する。
 
+    bash（推奨）:
+
     ```bash
     ls ~/.ssh/id_ed25519*
     ```
+
+    PowerShell（参考）:
 
     ```powershell
     Get-ChildItem $env:USERPROFILE\.ssh\id_ed25519*
@@ -103,11 +125,15 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 
     PowerShell のネイティブコマンドを使用してSSH鍵を作成することもできる。あらかじめ `.ssh` ディレクトリを作成し、`ssh-keygen` コマンドで鍵を生成する。
 
+    bash（推奨）:
+
     ```bash
     mkdir -p ~/.ssh
     ssh-keygen -t ed25519 -C "t3-lab" -f ~/.ssh/id_ed25519
     ls ~/.ssh/id_ed25519*
     ```
+
+    PowerShell（参考）:
 
     ```powershell
     New-Item -ItemType Directory -Force -Path $env:USERPROFILE\.ssh
@@ -125,15 +151,21 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 
     1. `[Windows 11 ターミナル]` から、まずパスワード認証でサーバーへ接続する。
 
+    bash（推奨）:
+
     ```bash
     ssh student@192.168.100.xxx
     ```
+
+    PowerShell（参考）:
 
     ```powershell
     ssh student@192.168.100.xxx
     ```
 
     2. `[Ubuntuサーバー ターミナル]` で `.ssh` ディレクトリと `authorized_keys` を作成し、権限を設定する。
+
+    bash（推奨）:
 
     ```bash
     mkdir -p ~/.ssh
@@ -144,9 +176,13 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 
     3. `[Windows 11 ターミナル]` で公開鍵の内容を表示する。
 
+    bash（推奨）:
+
     ```bash
     cat ~/.ssh/id_ed25519.pub
     ```
+
+    PowerShell（参考）:
 
     ```powershell
     type $env:USERPROFILE\.ssh\id_ed25519.pub
@@ -154,9 +190,13 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 
     ※ デフォルト名で作成した場合は以下を使用する。
 
+    bash（推奨）:
+
     ```bash
     cat ~/.ssh/id_ed25519.pub
     ```
+
+    PowerShell（参考）:
 
     ```powershell
     type $env:USERPROFILE\.ssh\id_ed25519.pub
@@ -164,15 +204,21 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 
     4. 表示された1行の公開鍵文字列をコピーし、`[Ubuntuサーバー ターミナル]` で `~/.ssh/authorized_keys` に1行で追記して保存する。
 
+    bash（推奨）:
+
     ```bash
     nano ~/.ssh/authorized_keys
     ```
 
     5. `[Windows 11 ターミナル]` から秘密鍵を指定して接続し、パスワードなしでログインできることを確認する。
 
+    bash（推奨）:
+
     ```bash
     ssh -i ~/.ssh/id_ed25519 student@192.168.100.xxx
     ```
+
+    PowerShell（参考）:
 
     ```powershell
     ssh -i $env:USERPROFILE\.ssh\id_ed25519 student@192.168.100.xxx
@@ -191,6 +237,8 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 
     sshd再起動と確認:
 
+    bash（推奨）:
+
     ```bash
     sudo sshd -t
     sudo systemctl restart ssh
@@ -199,9 +247,13 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 
     上記設定を反映した後、`[Windows 11 ターミナル]` からSSH接続し、パスワードなしでログインできることを再確認する。
 
+    bash（推奨）:
+
     ```bash
     ssh -i ~/.ssh/id_ed25519 student@192.168.100.xxx
     ```
+
+    PowerShell（参考）:
 
     ```powershell
     ssh -i $env:USERPROFILE\.ssh\id_ed25519 student@192.168.100.xxx
@@ -213,6 +265,8 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 
     PowerShell またはコマンドプロンプトから `scp` コマンドで実行できる。
 
+    bash（推奨）:
+
     ```bash
     scp sample.txt student@192.168.100.xxx:~/sample_from_win.txt
     scp student@192.168.100.xxx:~/sample_from_win.txt sample_from_server.txt
@@ -220,10 +274,14 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 
     または PowerShell で相対パスを指定する場合：
 
+    bash（推奨）:
+
     ```bash
     scp ./sample.txt student@192.168.100.xxx:~/sample_from_win.txt
     scp student@192.168.100.xxx:~/sample_from_win.txt ./sample_from_server.txt
     ```
+
+    PowerShell（参考）:
 
     ```powershell
     scp .\sample.txt student@192.168.100.xxx:~/sample_from_win.txt
@@ -237,6 +295,8 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 
 **[Ubuntuサーバー ターミナル]**
 
+bash（推奨）:
+
 ```bash
 sudo ufw status numbered
 sudo sshd -t
@@ -246,6 +306,8 @@ ls -l ~/sample_from_win.txt
 
 **[Windows 11 ターミナル]**
 
+bash（推奨）:
+
 ```bash
 scp sample.txt student@192.168.100.xxx:~/sample_from_win.txt
 scp student@192.168.100.xxx:~/sample_from_win.txt sample_from_server.txt
@@ -253,6 +315,8 @@ mkdir -p ~/.ssh
 ssh-keygen -t ed25519 -C "t3-lab" -f ~/.ssh/id_ed25519
 ssh -i ~/.ssh/id_ed25519 student@192.168.100.xxx
 ```
+
+PowerShell（参考）:
 
 ```powershell
 New-Item -ItemType Directory -Force -Path $env:USERPROFILE\.ssh

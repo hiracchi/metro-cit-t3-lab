@@ -26,6 +26,8 @@ Webサーバー（Nginx）を構築し、HTML配信の動作を確認する。�
 
 1. [Ubuntuサーバー ターミナル] Nginx用ディレクトリと Compose 定義ファイルを作成する
 
+bash（推奨）:
+
 ```bash
 sudo mkdir -p /opt/nginx/html
 sudo mkdir -p /opt/nginx/log
@@ -62,6 +64,8 @@ services:
 
 1. [Ubuntuサーバー ターミナル] Nginxコンテナを Compose で起動し、初期確認を行う
 
+bash（推奨）:
+
 ```bash
 cd /opt/nginx
 sudo docker compose config
@@ -74,6 +78,8 @@ sudo docker compose ps
 1. [Ubuntuサーバー ターミナル] HTMLファイルの作成
 
     Docker上のNginxから配信するため、ホスト側の `/opt/nginx/html/index.html` を作成する。簡単な見出しと本文を記述し、ブラウザから表示できるようにする。
+
+    bash（推奨）:
 
     ```bash
     sudo nano /opt/nginx/html/index.html
@@ -105,6 +111,8 @@ sudo docker compose ps
 
   第1段階で生成されたNginxアクセスログ（`/opt/nginx/log/access.log`）を `goaccess` サービスで解析し、HTMLレポートを生成する。
 
+  bash（推奨）:
+
   ```bash
   cd /opt/nginx
   sudo docker compose run --rm goaccess
@@ -117,6 +125,8 @@ sudo docker compose ps
 ## 3. 結果と考察
 **[Ubuntuサーバー ターミナル] 第1段階（Nginxのみ）確認コマンド:**
 
+bash（推奨）:
+
 ```bash
 curl http://localhost
 cd /opt/nginx
@@ -125,6 +135,8 @@ sudo docker compose logs --tail 20
 ```
 
 **[Ubuntuサーバー ターミナル] 第2段階（Nginx+GoAccess）確認コマンド:**
+
+bash（推奨）:
 
 ```bash
 cd /opt/nginx
