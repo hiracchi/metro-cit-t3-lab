@@ -31,10 +31,11 @@ bash（推奨）:
 
 ```bash
 curl -fsSL https://ollama.com/install.sh | sh
-ollama run gemma:2b
+ollama run qwen2.5:0.5b
 ```
 
-上記コマンドでOllamaをインストールし、軽量モデル（gemma:2b）を実行する。
+上記コマンドでOllamaをインストールし、軽量モデル（qwen2.5:0.5b）を実行する。
+他には Llama-3.2-1B-Instruct などもオススメ。
 
 1. [Windows 11 ターミナル] API経由の操作
 
