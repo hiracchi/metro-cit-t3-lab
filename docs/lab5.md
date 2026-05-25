@@ -182,7 +182,7 @@ bash（推奨）:
 
 ```bash
 curl http://[自分のIP]:11434/api/generate -d '{
-  "model": "gemma:2b",
+  "model": "qwen2.5:0.5b",
   "prompt": "高専について教えて",
   "stream": false
 }'
@@ -192,7 +192,7 @@ PowerShell（参考）:
 
 ```powershell
 curl http://[自分のIP]:11434/api/generate -d '{
-  "model": "gemma:2b",
+  "model": "qwen2.5:0.5b",
   "prompt": "高専について教えて",
   "stream": false
 }'
