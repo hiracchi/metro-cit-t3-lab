@@ -291,7 +291,7 @@ SSHはサーバーへ遠隔接続して管理するための仕組みであり�
 
     9. `[Windows 11 ターミナル（SSH接続）]` SSH接続を公開鍵認証のみにする設定を行う。
 
-        a. `/etc/ssh/sshd.config` の編集
+        a. `/etc/ssh/sshd_config` の編集
 
         sshd_config 編集例:
 
